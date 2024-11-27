@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+
 
 namespace SavasAraclari_Prolab2
 {
@@ -12,8 +14,8 @@ namespace SavasAraclari_Prolab2
         public abstract int HavaVurusAvantaji { get; }
         public abstract int KaraVurusAvantaji { get; }
 
-        protected DenizAraclari(string isim, int dayaniklilik)
-            : base(isim, dayaniklilik) { }
+        protected DenizAraclari(string isim, Image image, int dayaniklilik)
+            : base(isim, image, dayaniklilik) { }
 
         public override void KartPuaniGoster()
         {

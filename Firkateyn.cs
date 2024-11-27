@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+
 
 namespace SavasAraclari_Prolab2
 
@@ -17,11 +19,12 @@ namespace SavasAraclari_Prolab2
         public override int VurusGucu => 20;
 
         public Firkateyn(string isim)
-            : base(isim, 25) { }
+            : base(isim, Properties.Resources.Firkateyn, 25) { }
 
         public override int VurusAvantaji(string rakipSinif)
         {
             return rakipSinif == "Hava" ? HavaVurusAvantaji : 0;
         }
+
     }
 }

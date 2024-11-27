@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+
 
 namespace SavasAraclari_Prolab2
 {
@@ -15,7 +17,7 @@ namespace SavasAraclari_Prolab2
         public override int VurusGucu => 15;
 
         public Sida(string isim)
-            : base(isim, 15) { }
+            : base(isim, Properties.Resources.Sida, 15) { }
 
         public override int VurusAvantaji(string rakipSinif)
         {

@@ -18,11 +18,11 @@ namespace SavasAraclari_Prolab2
         public abstract void KartPuaniGoster();
         public abstract void DurumGuncelle(int hasar, int kazanilanPuan);
         public abstract int VurusAvantaji(string rakipSinif);
-        //   public abstract Image resim(get
 
-        protected SavasAraclari(string isim, int dayaniklilik)
-        {
-            Isim = isim;
+        protected SavasAraclari(string isim, Image image, int dayaniklilik)
+          : base(isim, image)
+        { 
+             Isim = isim;
             Dayaniklilik = dayaniklilik;
             SeviyePuani = 0;
         }

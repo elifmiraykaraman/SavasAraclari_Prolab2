@@ -6,17 +6,18 @@ using System.Windows.Forms;
 
 namespace SavasAraclari_Prolab2
 {
-    internal static class Program
+    static class Program
     {
         /// <summary>
-        /// Uygulamanın ana girdi noktası.
+        /// Uygulamanın ana giriş noktası.
         /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Form1 Form1 = new Form1();
+            Application.Run(Form1);
         }
     }
 }

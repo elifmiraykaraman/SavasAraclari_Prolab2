@@ -11,7 +11,7 @@ namespace SavasAraclari_Prolab2
     {
         public abstract string AltSinif { get; }
         public abstract int DenizVurusAvantaji { get; }
-        public abstract int HavaVurusAvantaji { get; }
+        public virtual int HavaVurusAvantaji { get; }
 
         protected KaraAraclari(string isim, Image image, int dayaniklilik)
             : base(isim,image, dayaniklilik) { }

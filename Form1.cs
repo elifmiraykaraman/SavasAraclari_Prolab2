@@ -14,7 +14,7 @@ namespace SavasAraclari_Prolab2
         public Form1()
         {
             InitializeComponent();
-            oyunYonetimi = new OyunYonetimmi
+            OyunYonetimi = new oyunYonetimmi
                 ();
             GuncelleUI();
         }

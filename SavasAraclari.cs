@@ -12,7 +12,7 @@ namespace SavasAraclari_Prolab2
     {
         public string Isim { get; set; }
         public abstract string Sinif { get; }
-        public int Dayaniklilik { get; set; }
+        public abstract int Dayaniklilik { get; set; }
         public int SeviyePuani { get; set; }
         public abstract int VurusGucu { get; }
         public abstract void KartPuaniGoster();
@@ -20,7 +20,6 @@ namespace SavasAraclari_Prolab2
         public abstract int VurusAvantaji(string rakipSinif);
 
         protected SavasAraclari(string isim, Image image, int dayaniklilik)
-          : base(isim, image)
         { 
              Isim = isim;
             Dayaniklilik = dayaniklilik;

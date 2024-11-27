@@ -8,16 +8,15 @@ namespace SavasAraclari_Prolab2
 {
     public partial class Form1 : Form
     {
-        private OyunYonetimi oyunYonetimi;
+        private GameManager oyunYonetimi;
             
 
         public Form1()
         {
             InitializeComponent();
-            OyunYonetimi = new oyunYonetimmi // Burda sanki bi yazım yanlış var gibi :) 
-                ();
+            GameManager Oyunyonetimi = new GameManager();  
             GuncelleUI();
-            private String Hello = "World"; 
+            
         }
 
         private void GuncelleUI()

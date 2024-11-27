@@ -14,9 +14,10 @@ namespace SavasAraclari_Prolab2
         public Form1()
         {
             InitializeComponent();
-            OyunYonetimi = new oyunYonetimmi
+            OyunYonetimi = new oyunYonetimmi // Burda sanki bi yazım yanlış var gibi :) 
                 ();
             GuncelleUI();
+            private String Hello = "World"; 
         }
 
         private void GuncelleUI()

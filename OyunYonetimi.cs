@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SavasAraclari_Prolab2
 {
-    public class GameManager
+    public class OyunYonetimi
     {
         public Oyuncu Oyuncu { get; private set; }
         public Oyuncu Bilgisayar { get; private set; }
@@ -18,7 +18,7 @@ namespace SavasAraclari_Prolab2
         public bool OyunBitti { get; private set; } = false;
         public string OyunSonucu { get; private set; }
 
-        public GameManager()
+        public OyunYonetimi()
         {
             rand = new Random();
             Oyuncu = new KullaniciOyuncu(1, "Kullanıcı", 0);

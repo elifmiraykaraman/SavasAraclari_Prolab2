@@ -8,64 +8,108 @@ namespace SavasAraclari_Prolab2
 {
     public partial class Form1 : Form
     {
-        private GameManager oyunYonetimi;
-        
+        private OyunYonetimi oyunYonetimi; // Oyun yönetimi nesnesi
+        private List<Kart> secilenKartlar = new List<Kart>(); // Oyuncunun seçtiği kartlar
+        private PictureBox[] pbOyuncuKartlar; // Oyuncu kartlarını temsil eden PictureBox'lar
 
         public Form1()
         {
             InitializeComponent();
-            GameManager Oyunyonetimi = new GameManager();  
+
+            // Oyun yönetimini başlat
+            oyunYonetimi = new OyunYonetimi();
+
+            // Alt satırdaki PictureBox'ları bir diziye al
+            pbOyuncuKartlar = new PictureBox[]
+            {
+                pbOyuncuKart1, pbOyuncuKart2, pbOyuncuKart3,
+                pbOyuncuKart4, pbOyuncuKart5, pbOyuncuKart6
+            };
+
+            // Oyuncu kartlarına tıklama olaylarını bağla
+            foreach (var pb in pbOyuncuKartlar)
+            {
+                pb.Click += OyuncuKart_Click;
+            }
+
+            // UI'yi güncelle
             GuncelleUI();
-            
         }
 
         private void GuncelleUI()
         {
             // Oyuncunun elindeki kartları güncelle
-            lbOyuncuEl.Items.Clear();
-            foreach (var kart in oyunYonetimi.Oyuncu.KartListesi)
+            var oyuncuKartlari = oyunYonetimi.Oyuncu.KartListesi;
+
+            for (int i = 0; i < pbOyuncuKartlar.Length; i++)
             {
-                lbOyuncuEl.Items.Add(kart.ToString());
+                if (i < oyuncuKartlari.Count)
+                {
+                    pbOyuncuKartlar[i].Image = oyuncuKartlari[i].Image; // Kart görselini ayarla
+                    pbOyuncuKartlar[i].Enabled = true; // Tıklanabilir yap
+                    pbOyuncuKartlar[i].Tag = oyuncuKartlari[i]; // Kartı Tag ile ilişkilendir
+                }
+                else
+                {
+                    pbOyuncuKartlar[i].Image = null; // Görseli temizle
+                    pbOyuncuKartlar[i].Enabled = false; // Tıklanamaz yap
+                    pbOyuncuKartlar[i].Tag = null; // İlişkiyi kaldır
+                }
             }
 
-            // Skorları güncelle
-            lblOyuncuSkor.Text = $"Oyuncu Skor: {oyunYonetimi.Oyuncu.Skor}";
-            lblBilgisayarSkor.Text = $"Bilgisayar Skor: {oyunYonetimi.Bilgisayar.Skor}";
+            // Seçilen kartları sıfırla
+            secilenKartlar.Clear();
 
-            // PictureBox'ları temizle
-            pbSecilenOyuncuKart1.Image = null;
-            pbSecilenOyuncuKart2.Image = null;
-            pbSecilenOyuncuKart3.Image = null;
-            pbSecilenBilgisayarKart1.Image = null;
-            pbSecilenBilgisayarKart2.Image = null;
-            pbSecilenBilgisayarKart3.Image = null;
+            // Seçim görsellerini sıfırla
+            foreach (var pb in pbOyuncuKartlar)
+            {
+                pb.BorderStyle = BorderStyle.None;
+            }
+        }
+
+        private void OyuncuKart_Click(object sender, EventArgs e)
+        {
+            // Tıklanan PictureBox'ı al
+            PictureBox pb = sender as PictureBox;
+
+            if (pb != null && pb.Tag is Kart kart)
+            {
+                if (secilenKartlar.Contains(kart))
+                {
+                    // Kart zaten seçiliyse, seçimi kaldır
+                    secilenKartlar.Remove(kart);
+                    pb.BorderStyle = BorderStyle.None;
+                }
+                else
+                {
+                    if (secilenKartlar.Count < 3)
+                    {
+                        // Yeni kartı seç
+                        secilenKartlar.Add(kart);
+                        pb.BorderStyle = BorderStyle.FixedSingle;
+                    }
+                    else
+                    {
+                        MessageBox.Show("En fazla 3 kart seçebilirsiniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
         }
 
         private void btnSecHamle_Click(object sender, EventArgs e)
         {
             // Oyuncu kart seçimi kontrolü
-            if (lbOyuncuEl.SelectedItems.Count != 3)
+            if (secilenKartlar.Count != 3)
             {
                 MessageBox.Show("Lütfen 3 kart seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Seçilen kartları al
-            List<SavasAraclari> oyuncuKartlari = new List<SavasAraclari>();
-            foreach (var item in lbOyuncuEl.SelectedItems)
-            {
-                var kart = oyunYonetimi.Oyuncu.KartListesi.FirstOrDefault(k => k.ToString() == item.ToString());
-                if (kart != null)
-                {
-                    oyuncuKartlari.Add(kart);
-                }
-            }
-
             // Bilgisayar kart seçimi
-            List<SavasAraclari> bilgisayarKartlari = oyunYonetimi.Bilgisayar.KartSec();
+            List<Kart> bilgisayarKartlari = oyunYonetimi.Bilgisayar.KartSec();
 
             // Hamleyi gerçekleştir
-            oyunYonetimi.YeniHamle(oyuncuKartlari, bilgisayarKartlari);
+            oyunYonetimi.YeniHamle(secilenKartlar, bilgisayarKartlari);
 
             // UI'yı güncelle
             GuncelleUI();
@@ -73,7 +117,34 @@ namespace SavasAraclari_Prolab2
             // Oyun bitti mi kontrol et
             if (oyunYonetimi.OyunBitti)
             {
-                MessageBox.Show(oyunYonetimi.OyunSonucu, "Oyun Sonu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Skorları MessageBox ile göster
+                string sonucMesaji = $"Oyun Bitti!\n\n" +
+                                     $"Oyuncu Skor: {oyunYonetimi.Oyuncu.Skor}\n" +
+                                     $"Bilgisayar Skor: {oyunYonetimi.Bilgisayar.Skor}\n\n" +
+                                     $"Sonuç: {oyunYonetimi.OyunSonucu}";
+
+                MessageBox.Show(sonucMesaji, "Oyun Sonu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Oyun yeniden başlatılır
+                YeniOyun();
+            }
+        }
+
+        private void YeniOyun()
+        {
+            // Yeni bir oyun başlat
+            oyunYonetimi = new OyunYonetimi();
+            GuncelleUI();
+        }
+
+        private void btnYenidenBaslat_Click(object sender, EventArgs e)
+        {
+            // Kullanıcıdan onay al
+            var result = MessageBox.Show("Oyunu yeniden başlatmak istediğinize emin misiniz?", "Yeniden Başlat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                YeniOyun();
             }
         }
     }

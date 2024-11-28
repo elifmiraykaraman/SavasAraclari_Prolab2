@@ -14,7 +14,18 @@ namespace SavasAraclari_Prolab2
         public abstract int KaraVurusAvantaji { get; }
         public virtual int DenizVurusAvantaji => 5;
 
-        
+
+        public string Isim { get; private set; }
+        public Image Resim { get; private set; }
+        public int BaslangicDayaniklilik { get; private set; }
+
+        protected HavaAraclari(string isim, Image resim, int dayaniklilik)
+        {
+            Isim = isim;
+            Resim = resim;
+            BaslangicDayaniklilik = dayaniklilik;
+        }
+
         /*
         public override void KartPuaniGoster()
         {

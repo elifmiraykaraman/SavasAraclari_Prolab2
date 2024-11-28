@@ -10,7 +10,6 @@ namespace SavasAraclari_Prolab2
 {
     public class Sida : DenizAraclari
     {
-        public string isim; 
         public override string Sinif => "Deniz";
         public override string AltSinif => "SİDA";
         public override int HavaVurusAvantaji => 0;
@@ -20,12 +19,13 @@ namespace SavasAraclari_Prolab2
         private int _dayaniklilik;
 
         public Sida(string isim)
+            : base(isim, Properties.Resources.Sida, 15) // Üst sınıfın constructor'ını çağırıyoruz
         {
-            _dayaniklilik = 15;
-            this.isim = isim;
+            _dayaniklilik = 15; // Başlangıç dayanıklılığını ayarla
         }
 
         public override int Dayaniklilik => _dayaniklilik;
+
         public override int VurusAvantaji(string rakipSinif)
         {
             return rakipSinif == "Kara" ? KaraVurusAvantaji : 0;

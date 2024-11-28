@@ -28,142 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbOyuncuEl = new System.Windows.Forms.ListBox();
-            this.btnSecHamle = new System.Windows.Forms.Button();
-            this.btnYeniHamle = new System.Windows.Forms.Button();
-            this.lbSecilenOyuncuKartlari = new System.Windows.Forms.ListBox();
-            this.lbSecilenBilgisayarKartlari = new System.Windows.Forms.ListBox();
-            this.lblOyuncuSkor = new System.Windows.Forms.Label();
-            this.lblBilgisayarSkor = new System.Windows.Forms.Label();
-            this.pbSecilenOyuncuKart1 = new System.Windows.Forms.PictureBox();
-            this.pbSecilenOyuncuKart2 = new System.Windows.Forms.PictureBox();
-            this.pbSecilenOyuncuKart3 = new System.Windows.Forms.PictureBox();
-            this.pbSecilenBilgisayarKart1 = new System.Windows.Forms.PictureBox();
-            this.pbSecilenBilgisayarKart2 = new System.Windows.Forms.PictureBox();
-            this.pbSecilenBilgisayarKart3 = new System.Windows.Forms.PictureBox();
             this.txtOyunSonucu = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenOyuncuKart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenOyuncuKart2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenOyuncuKart3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenBilgisayarKart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenBilgisayarKart2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenBilgisayarKart3)).BeginInit();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnHamleYap = new System.Windows.Forms.Button();
+            this.pbBilgisayarKart6 = new System.Windows.Forms.PictureBox();
+            this.pbBilgisayarKart5 = new System.Windows.Forms.PictureBox();
+            this.pbBilgisayarKart4 = new System.Windows.Forms.PictureBox();
+            this.pbBilgisayarKart3 = new System.Windows.Forms.PictureBox();
+            this.pbBilgisayarKart2 = new System.Windows.Forms.PictureBox();
+            this.pbBilgisayarKart1 = new System.Windows.Forms.PictureBox();
+            this.pbOyuncuKart1 = new System.Windows.Forms.PictureBox();
+            this.pbOyuncuKart2 = new System.Windows.Forms.PictureBox();
+            this.pbOyuncuKart3 = new System.Windows.Forms.PictureBox();
+            this.pbOyuncuKart4 = new System.Windows.Forms.PictureBox();
+            this.pbOyuncuKart5 = new System.Windows.Forms.PictureBox();
+            this.pbOyuncuKart6 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart6)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lbOyuncuEl
-            // 
-            this.lbOyuncuEl.FormattingEnabled = true;
-            this.lbOyuncuEl.Location = new System.Drawing.Point(20, 20);
-            this.lbOyuncuEl.Name = "lbOyuncuEl";
-            this.lbOyuncuEl.Size = new System.Drawing.Size(200, 147);
-            this.lbOyuncuEl.TabIndex = 0;
-            // 
-            // btnSecHamle
-            // 
-            this.btnSecHamle.Location = new System.Drawing.Point(250, 20);
-            this.btnSecHamle.Name = "btnSecHamle";
-            this.btnSecHamle.Size = new System.Drawing.Size(150, 50);
-            this.btnSecHamle.TabIndex = 1;
-            this.btnSecHamle.Text = "Hamle Yap";
-            this.btnSecHamle.UseVisualStyleBackColor = true;
-            this.btnSecHamle.Click += new System.EventHandler(this.btnSecHamle_Click);
-            // 
-            // btnYeniHamle
-            // 
-            this.btnYeniHamle.Location = new System.Drawing.Point(250, 80);
-            this.btnYeniHamle.Name = "btnYeniHamle";
-            this.btnYeniHamle.Size = new System.Drawing.Size(150, 50);
-            this.btnYeniHamle.TabIndex = 2;
-            this.btnYeniHamle.Text = "Yeni Hamle";
-            this.btnYeniHamle.UseVisualStyleBackColor = true;
-            // 
-            // lbSecilenOyuncuKartlari
-            // 
-            this.lbSecilenOyuncuKartlari.FormattingEnabled = true;
-            this.lbSecilenOyuncuKartlari.Location = new System.Drawing.Point(20, 200);
-            this.lbSecilenOyuncuKartlari.Name = "lbSecilenOyuncuKartlari";
-            this.lbSecilenOyuncuKartlari.Size = new System.Drawing.Size(200, 147);
-            this.lbSecilenOyuncuKartlari.TabIndex = 3;
-            // 
-            // lbSecilenBilgisayarKartlari
-            // 
-            this.lbSecilenBilgisayarKartlari.FormattingEnabled = true;
-            this.lbSecilenBilgisayarKartlari.Location = new System.Drawing.Point(400, 200);
-            this.lbSecilenBilgisayarKartlari.Name = "lbSecilenBilgisayarKartlari";
-            this.lbSecilenBilgisayarKartlari.Size = new System.Drawing.Size(200, 147);
-            this.lbSecilenBilgisayarKartlari.TabIndex = 4;
-            // 
-            // lblOyuncuSkor
-            // 
-            this.lblOyuncuSkor.AutoSize = true;
-            this.lblOyuncuSkor.Location = new System.Drawing.Point(20, 380);
-            this.lblOyuncuSkor.Name = "lblOyuncuSkor";
-            this.lblOyuncuSkor.Size = new System.Drawing.Size(75, 13);
-            this.lblOyuncuSkor.TabIndex = 5;
-            this.lblOyuncuSkor.Text = "Oyuncu Skor: ";
-            // 
-            // lblBilgisayarSkor
-            // 
-            this.lblBilgisayarSkor.AutoSize = true;
-            this.lblBilgisayarSkor.Location = new System.Drawing.Point(400, 380);
-            this.lblBilgisayarSkor.Name = "lblBilgisayarSkor";
-            this.lblBilgisayarSkor.Size = new System.Drawing.Size(82, 13);
-            this.lblBilgisayarSkor.TabIndex = 6;
-            this.lblBilgisayarSkor.Text = "Bilgisayar Skor: ";
-            // 
-            // pbSecilenOyuncuKart1
-            // 
-            this.pbSecilenOyuncuKart1.Location = new System.Drawing.Point(20, 420);
-            this.pbSecilenOyuncuKart1.Name = "pbSecilenOyuncuKart1";
-            this.pbSecilenOyuncuKart1.Size = new System.Drawing.Size(100, 100);
-            this.pbSecilenOyuncuKart1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSecilenOyuncuKart1.TabIndex = 7;
-            this.pbSecilenOyuncuKart1.TabStop = false;
-            // 
-            // pbSecilenOyuncuKart2
-            // 
-            this.pbSecilenOyuncuKart2.Location = new System.Drawing.Point(140, 420);
-            this.pbSecilenOyuncuKart2.Name = "pbSecilenOyuncuKart2";
-            this.pbSecilenOyuncuKart2.Size = new System.Drawing.Size(100, 100);
-            this.pbSecilenOyuncuKart2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSecilenOyuncuKart2.TabIndex = 8;
-            this.pbSecilenOyuncuKart2.TabStop = false;
-            // 
-            // pbSecilenOyuncuKart3
-            // 
-            this.pbSecilenOyuncuKart3.Location = new System.Drawing.Point(260, 420);
-            this.pbSecilenOyuncuKart3.Name = "pbSecilenOyuncuKart3";
-            this.pbSecilenOyuncuKart3.Size = new System.Drawing.Size(100, 100);
-            this.pbSecilenOyuncuKart3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSecilenOyuncuKart3.TabIndex = 9;
-            this.pbSecilenOyuncuKart3.TabStop = false;
-            // 
-            // pbSecilenBilgisayarKart1
-            // 
-            this.pbSecilenBilgisayarKart1.Location = new System.Drawing.Point(400, 420);
-            this.pbSecilenBilgisayarKart1.Name = "pbSecilenBilgisayarKart1";
-            this.pbSecilenBilgisayarKart1.Size = new System.Drawing.Size(100, 100);
-            this.pbSecilenBilgisayarKart1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSecilenBilgisayarKart1.TabIndex = 10;
-            this.pbSecilenBilgisayarKart1.TabStop = false;
-            // 
-            // pbSecilenBilgisayarKart2
-            // 
-            this.pbSecilenBilgisayarKart2.Location = new System.Drawing.Point(520, 420);
-            this.pbSecilenBilgisayarKart2.Name = "pbSecilenBilgisayarKart2";
-            this.pbSecilenBilgisayarKart2.Size = new System.Drawing.Size(100, 100);
-            this.pbSecilenBilgisayarKart2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSecilenBilgisayarKart2.TabIndex = 11;
-            this.pbSecilenBilgisayarKart2.TabStop = false;
-            // 
-            // pbSecilenBilgisayarKart3
-            // 
-            this.pbSecilenBilgisayarKart3.Location = new System.Drawing.Point(640, 420);
-            this.pbSecilenBilgisayarKart3.Name = "pbSecilenBilgisayarKart3";
-            this.pbSecilenBilgisayarKart3.Size = new System.Drawing.Size(100, 100);
-            this.pbSecilenBilgisayarKart3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbSecilenBilgisayarKart3.TabIndex = 12;
-            this.pbSecilenBilgisayarKart3.TabStop = false;
             // 
             // txtOyunSonucu
             // 
@@ -174,51 +67,196 @@
             this.txtOyunSonucu.Size = new System.Drawing.Size(720, 50);
             this.txtOyunSonucu.TabIndex = 7;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 6;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.Controls.Add(this.pbBilgisayarKart6, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pbBilgisayarKart5, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pbBilgisayarKart4, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pbBilgisayarKart3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pbBilgisayarKart2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pbBilgisayarKart1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pbOyuncuKart1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.pbOyuncuKart2, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.pbOyuncuKart3, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.pbOyuncuKart4, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.pbOyuncuKart5, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.pbOyuncuKart6, 5, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnHamleYap, 2, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(55, 12);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(540, 337);
+            this.tableLayoutPanel1.TabIndex = 13;
+            // 
+            // btnHamleYap
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.btnHamleYap, 2);
+            this.btnHamleYap.Location = new System.Drawing.Point(183, 115);
+            this.btnHamleYap.Name = "btnHamleYap";
+            this.btnHamleYap.Size = new System.Drawing.Size(174, 106);
+            this.btnHamleYap.TabIndex = 12;
+            this.btnHamleYap.Text = "Hamle Yap";
+            this.btnHamleYap.UseVisualStyleBackColor = true;
+            // 
+            // pbBilgisayarKart6
+            // 
+            this.pbBilgisayarKart6.Location = new System.Drawing.Point(453, 3);
+            this.pbBilgisayarKart6.Name = "pbBilgisayarKart6";
+            this.pbBilgisayarKart6.Size = new System.Drawing.Size(84, 106);
+            this.pbBilgisayarKart6.TabIndex = 5;
+            this.pbBilgisayarKart6.TabStop = false;
+            // 
+            // pbBilgisayarKart5
+            // 
+            this.pbBilgisayarKart5.Location = new System.Drawing.Point(363, 3);
+            this.pbBilgisayarKart5.Name = "pbBilgisayarKart5";
+            this.pbBilgisayarKart5.Size = new System.Drawing.Size(84, 106);
+            this.pbBilgisayarKart5.TabIndex = 4;
+            this.pbBilgisayarKart5.TabStop = false;
+            // 
+            // pbBilgisayarKart4
+            // 
+            this.pbBilgisayarKart4.Location = new System.Drawing.Point(273, 3);
+            this.pbBilgisayarKart4.Name = "pbBilgisayarKart4";
+            this.pbBilgisayarKart4.Size = new System.Drawing.Size(84, 106);
+            this.pbBilgisayarKart4.TabIndex = 3;
+            this.pbBilgisayarKart4.TabStop = false;
+            // 
+            // pbBilgisayarKart3
+            // 
+            this.pbBilgisayarKart3.Location = new System.Drawing.Point(183, 3);
+            this.pbBilgisayarKart3.Name = "pbBilgisayarKart3";
+            this.pbBilgisayarKart3.Size = new System.Drawing.Size(84, 106);
+            this.pbBilgisayarKart3.TabIndex = 2;
+            this.pbBilgisayarKart3.TabStop = false;
+            // 
+            // pbBilgisayarKart2
+            // 
+            this.pbBilgisayarKart2.Location = new System.Drawing.Point(93, 3);
+            this.pbBilgisayarKart2.Name = "pbBilgisayarKart2";
+            this.pbBilgisayarKart2.Size = new System.Drawing.Size(84, 106);
+            this.pbBilgisayarKart2.TabIndex = 1;
+            this.pbBilgisayarKart2.TabStop = false;
+            // 
+            // pbBilgisayarKart1
+            // 
+            this.pbBilgisayarKart1.Location = new System.Drawing.Point(3, 3);
+            this.pbBilgisayarKart1.Name = "pbBilgisayarKart1";
+            this.pbBilgisayarKart1.Size = new System.Drawing.Size(84, 106);
+            this.pbBilgisayarKart1.TabIndex = 0;
+            this.pbBilgisayarKart1.TabStop = false;
+            // 
+            // pbOyuncuKart1
+            // 
+            this.pbOyuncuKart1.Image = global::SavasAraclari_Prolab2.Properties.Resources.Ucak;
+            this.pbOyuncuKart1.Location = new System.Drawing.Point(3, 227);
+            this.pbOyuncuKart1.Name = "pbOyuncuKart1";
+            this.pbOyuncuKart1.Size = new System.Drawing.Size(84, 106);
+            this.pbOyuncuKart1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOyuncuKart1.TabIndex = 6;
+            this.pbOyuncuKart1.TabStop = false;
+            // 
+            // pbOyuncuKart2
+            // 
+            this.pbOyuncuKart2.Image = global::SavasAraclari_Prolab2.Properties.Resources.Siha;
+            this.pbOyuncuKart2.Location = new System.Drawing.Point(93, 227);
+            this.pbOyuncuKart2.Name = "pbOyuncuKart2";
+            this.pbOyuncuKart2.Size = new System.Drawing.Size(84, 106);
+            this.pbOyuncuKart2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOyuncuKart2.TabIndex = 7;
+            this.pbOyuncuKart2.TabStop = false;
+            // 
+            // pbOyuncuKart3
+            // 
+            this.pbOyuncuKart3.Image = global::SavasAraclari_Prolab2.Properties.Resources.Sida;
+            this.pbOyuncuKart3.Location = new System.Drawing.Point(183, 227);
+            this.pbOyuncuKart3.Name = "pbOyuncuKart3";
+            this.pbOyuncuKart3.Size = new System.Drawing.Size(84, 106);
+            this.pbOyuncuKart3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOyuncuKart3.TabIndex = 8;
+            this.pbOyuncuKart3.TabStop = false;
+            // 
+            // pbOyuncuKart4
+            // 
+            this.pbOyuncuKart4.Image = global::SavasAraclari_Prolab2.Properties.Resources.Obus;
+            this.pbOyuncuKart4.Location = new System.Drawing.Point(273, 227);
+            this.pbOyuncuKart4.Name = "pbOyuncuKart4";
+            this.pbOyuncuKart4.Size = new System.Drawing.Size(84, 106);
+            this.pbOyuncuKart4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOyuncuKart4.TabIndex = 9;
+            this.pbOyuncuKart4.TabStop = false;
+            // 
+            // pbOyuncuKart5
+            // 
+            this.pbOyuncuKart5.Image = global::SavasAraclari_Prolab2.Properties.Resources.KFS;
+            this.pbOyuncuKart5.Location = new System.Drawing.Point(363, 227);
+            this.pbOyuncuKart5.Name = "pbOyuncuKart5";
+            this.pbOyuncuKart5.Size = new System.Drawing.Size(84, 106);
+            this.pbOyuncuKart5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOyuncuKart5.TabIndex = 10;
+            this.pbOyuncuKart5.TabStop = false;
+            // 
+            // pbOyuncuKart6
+            // 
+            this.pbOyuncuKart6.Image = global::SavasAraclari_Prolab2.Properties.Resources.Firkateyn;
+            this.pbOyuncuKart6.Location = new System.Drawing.Point(453, 227);
+            this.pbOyuncuKart6.Name = "pbOyuncuKart6";
+            this.pbOyuncuKart6.Size = new System.Drawing.Size(84, 106);
+            this.pbOyuncuKart6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOyuncuKart6.TabIndex = 11;
+            this.pbOyuncuKart6.TabStop = false;
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(800, 650);
-            this.Controls.Add(this.lbOyuncuEl);
-            this.Controls.Add(this.btnSecHamle);
-            this.Controls.Add(this.btnYeniHamle);
-            this.Controls.Add(this.lbSecilenOyuncuKartlari);
-            this.Controls.Add(this.lbSecilenBilgisayarKartlari);
-            this.Controls.Add(this.lblOyuncuSkor);
-            this.Controls.Add(this.lblBilgisayarSkor);
-            this.Controls.Add(this.pbSecilenOyuncuKart1);
-            this.Controls.Add(this.pbSecilenOyuncuKart2);
-            this.Controls.Add(this.pbSecilenOyuncuKart3);
-            this.Controls.Add(this.pbSecilenBilgisayarKart1);
-            this.Controls.Add(this.pbSecilenBilgisayarKart2);
-            this.Controls.Add(this.pbSecilenBilgisayarKart3);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.txtOyunSonucu);
             this.Name = "Form1";
             this.Text = "Savaş Araçları Oyunu";
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenOyuncuKart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenOyuncuKart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenOyuncuKart3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenBilgisayarKart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenBilgisayarKart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSecilenBilgisayarKart3)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox lbOyuncuEl;
-        private System.Windows.Forms.Button btnSecHamle;
-        private System.Windows.Forms.Button btnYeniHamle;
-        private System.Windows.Forms.ListBox lbSecilenOyuncuKartlari;
-        private System.Windows.Forms.ListBox lbSecilenBilgisayarKartlari;
-        private System.Windows.Forms.Label lblOyuncuSkor;
-        private System.Windows.Forms.Label lblBilgisayarSkor;
-        private System.Windows.Forms.PictureBox pbSecilenOyuncuKart1;
-        private System.Windows.Forms.PictureBox pbSecilenOyuncuKart2;
-        private System.Windows.Forms.PictureBox pbSecilenOyuncuKart3;
-        private System.Windows.Forms.PictureBox pbSecilenBilgisayarKart1;
-        private System.Windows.Forms.PictureBox pbSecilenBilgisayarKart2;
-        private System.Windows.Forms.PictureBox pbSecilenBilgisayarKart3;
         private System.Windows.Forms.TextBox txtOyunSonucu;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.PictureBox pbBilgisayarKart3;
+        private System.Windows.Forms.PictureBox pbBilgisayarKart2;
+        private System.Windows.Forms.PictureBox pbBilgisayarKart1;
+        private System.Windows.Forms.PictureBox pbBilgisayarKart6;
+        private System.Windows.Forms.PictureBox pbBilgisayarKart5;
+        private System.Windows.Forms.PictureBox pbBilgisayarKart4;
+        private System.Windows.Forms.PictureBox pbOyuncuKart1;
+        private System.Windows.Forms.PictureBox pbOyuncuKart2;
+        private System.Windows.Forms.PictureBox pbOyuncuKart3;
+        private System.Windows.Forms.PictureBox pbOyuncuKart4;
+        private System.Windows.Forms.PictureBox pbOyuncuKart5;
+        private System.Windows.Forms.PictureBox pbOyuncuKart6;
+        private System.Windows.Forms.Button btnHamleYap;
     }
 }

@@ -70,11 +70,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SavasAraclari.cs" />
     <Compile Include="Sida.cs" />
-    <Compile Include="SidaKart.cs" />
     <Compile Include="Siha.cs" />
-    <Compile Include="SihaKart.cs" />
     <Compile Include="Ucak.cs" />
-    <Compile Include="UcakKart.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +83,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -99,6 +97,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ucak.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Siha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sida.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Obus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KFS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Firkateyn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

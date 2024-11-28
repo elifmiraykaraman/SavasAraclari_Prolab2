@@ -106,7 +106,8 @@ namespace SavasAraclari_Prolab2
                 int bilgisayarSaldiri = HesaplaSaldiri(bilgisayarCard, oyuncuCard);
 
                 // Dayanıklılıkların azaltılması
-                bilgisayarCard.Dayaniklilik -= oyuncuSaldiri;
+                //      Burda bir düzeltme yapılacak 
+                bilgisayarCard.Dayaniklilik-= oyuncuSaldiri;
                 oyuncuCard.Dayaniklilik -= bilgisayarSaldiri;
 
                 // Kartların elenip elenmediğini kontrol et

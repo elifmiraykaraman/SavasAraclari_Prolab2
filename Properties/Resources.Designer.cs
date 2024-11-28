@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Drawing;
+
 namespace SavasAraclari_Prolab2.Properties
 {
 
@@ -33,6 +35,13 @@ namespace SavasAraclari_Prolab2.Properties
         internal Resources()
         {
         }
+
+        public static Image Firkateyn { get; internal set; }
+        public static Image Siha { get; internal set; }
+        public static Image Sida { get; internal set; }
+        public static Image Ucak { get; internal set; }
+        public static Image KFS { get; internal set; }
+        public static Image Obus { get; internal set; }
 
         /// <summary>
         ///   Bu sınıf tarafından kullanılan, önbelleğe alınmış ResourceManager örneğini döndürür.

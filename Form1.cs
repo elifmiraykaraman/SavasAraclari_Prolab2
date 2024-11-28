@@ -9,7 +9,7 @@ namespace SavasAraclari_Prolab2
     public partial class Form1 : Form
     {
         private GameManager oyunYonetimi;
-            
+        
 
         public Form1()
         {

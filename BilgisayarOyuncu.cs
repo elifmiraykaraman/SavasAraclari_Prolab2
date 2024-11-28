@@ -29,7 +29,7 @@ namespace SavasAraclari_Prolab2
             {
                 int index = rand.Next(KartListesi.Count);
                 secilenKartlar.Add(KartListesi[index]);
-                KartListesi.RemoveAt(index);
+                
             }
 
             return secilenKartlar;

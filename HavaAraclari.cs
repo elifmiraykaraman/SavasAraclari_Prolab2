@@ -14,9 +14,8 @@ namespace SavasAraclari_Prolab2
         public abstract int KaraVurusAvantaji { get; }
         public virtual int DenizVurusAvantaji => 5;
 
-        protected HavaAraclari(string isim, Image image, int dayaniklilik)
-            : base(isim,image, dayaniklilik) { }
-
+        
+        /*
         public override void KartPuaniGoster()
         {
         }
@@ -26,6 +25,7 @@ namespace SavasAraclari_Prolab2
             Dayaniklilik -= hasar;
             SeviyePuani += kazanilanPuan;
         }
+        */
 
     }
 }

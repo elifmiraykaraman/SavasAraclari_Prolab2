@@ -49,7 +49,6 @@
     <Compile Include="BilgisayarOyuncu.cs" />
     <Compile Include="DenizAraclari1.cs" />
     <Compile Include="Firkateyn.cs" />
-    <Compile Include="FirkateynKart.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,10 +59,8 @@
     <Compile Include="KaraAraclari.cs" />
     <Compile Include="Kart.cs" />
     <Compile Include="Kfs.cs" />
-    <Compile Include="KfsKart.cs" />
     <Compile Include="KullaniciOyuncu.cs" />
     <Compile Include="Obus.cs" />
-    <Compile Include="ObusKart.cs" />
     <Compile Include="Oyuncu.cs" />
     <Compile Include="OyunYonetimi.cs" />
     <Compile Include="Program.cs" />
@@ -115,6 +112,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Firkateyn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ARKA_PLAN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ARKA_PLAN1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

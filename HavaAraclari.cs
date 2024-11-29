@@ -3,28 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
 
+using System.Drawing;
 
 namespace SavasAraclari_Prolab2
 {
     public abstract class HavaAraclari : SavasAraclari
     {
+        public override string Sinif => "Hava";
         public abstract string AltSinif { get; }
         public abstract int KaraVurusAvantaji { get; }
-        public virtual int DenizVurusAvantaji => 5;
-
-
-        public string Isim { get; private set; }
-        public Image Resim { get; private set; }
-        public int BaslangicDayaniklilik { get; private set; }
+        public abstract int DenizVurusAvantaji { get; }
+        public override int Dayaniklilik { get; protected set; }
 
         protected HavaAraclari(string isim, Image resim, int dayaniklilik)
+            : base(isim, resim, dayaniklilik)
         {
-            Isim = isim;
-            Resim = resim;
-            BaslangicDayaniklilik = dayaniklilik;
+            Dayaniklilik = dayaniklilik;
         }
+
+        public override void HasarAl(int hasarMiktari)
+        {
+            Dayaniklilik -= hasarMiktari;
+            if (Dayaniklilik < 0)
+                Dayaniklilik = 0;
+        }
+
+        public override int VurusAvantaji(string rakipSinif)
+        {
+            int avantaj = 0;
+
+            if (rakipSinif == "Kara")
+                avantaj += KaraVurusAvantaji;
+            if (rakipSinif == "Deniz")
+                avantaj += DenizVurusAvantaji;
+
+            return avantaj;
+        }
+    }
+}
+
 
         /*
         public override void KartPuaniGoster()
@@ -37,6 +55,3 @@ namespace SavasAraclari_Prolab2
             SeviyePuani += kazanilanPuan;
         }
         */
-
-    }
-}

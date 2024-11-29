@@ -17,12 +17,31 @@ namespace SavasAraclari_Prolab2
         public Image Resim { get; private set; }
         public int BaslangicDayaniklilik { get; private set; }
 
-        protected KaraAraclari(string isim, Image image, int dayaniklilik)
+        protected KaraAraclari(string isim, Image resim, int dayaniklilik)
+            : base(isim, resim, dayaniklilik)
         {
-            Isim = isim;
-            Resim = image;
-            BaslangicDayaniklilik = dayaniklilik;
+            Dayaniklilik = dayaniklilik;
         }
+
+        public override void HasarAl(int hasarMiktari)
+        {
+            Dayaniklilik -= hasarMiktari;
+            if (Dayaniklilik < 0)
+                Dayaniklilik = 0;
+        }
+
+        public override int VurusAvantaji(string rakipSinif)
+        {
+            int avantaj = 0;
+
+            if (rakipSinif == "Deniz")
+                avantaj += DenizVurusAvantaji;
+            if (rakipSinif == "Hava")
+                avantaj += HavaVurusAvantaji;
+
+            return avantaj;
+        }
+}
 
         /*
         public override void KartPuaniGoster()
@@ -36,4 +55,4 @@ namespace SavasAraclari_Prolab2
         }
         */
     }
-}
+

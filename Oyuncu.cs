@@ -12,6 +12,16 @@ namespace SavasAraclari_Prolab2
         public string OyuncuAdi { get; private set; }
         public int Skor { get; set; }
         public List<SavasAraclari> KartListesi { get; private set; }
+        public bool KilitliKartlarAcildi { get; set; } = false; // Kilitli kartların açılıp açılmadığını takip eder
+
+        public int ToplamSeviyePuani
+        {
+            get
+            {
+                // Elindeki kartların toplam seviye puanını hesaplar
+                return KartListesi.Sum(k => k.SeviyePuani);
+            }
+        }
 
         // Parametresiz Constructor
         protected Oyuncu()

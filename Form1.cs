@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace SavasAraclari_Prolab2
@@ -19,7 +18,7 @@ namespace SavasAraclari_Prolab2
             // Oyun yönetimini başlat
             oyunYonetimi = new OyunYonetimi();
 
-            // Alt satırdaki PictureBox'ları bir diziye al
+            // PictureBox'ları bir diziye al
             pbOyuncuKartlar = new PictureBox[]
             {
                 pbOyuncuKart1, pbOyuncuKart2, pbOyuncuKart3,
@@ -32,8 +31,53 @@ namespace SavasAraclari_Prolab2
                 pb.Click += OyuncuKart_Click;
             }
 
+            // Form yüklendiğinde çalışacak olay işleyiciyi bağla
+            this.Load += Form1_Load;
+
             // UI'yi güncelle
             GuncelleUI();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Form arka planını ayarla
+            this.BackgroundImage = Properties.Resources.ARKA_PLAN; // Arka plan görseli
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+
+            // TableLayoutPanel'i şeffaf yap
+            tableLayoutPanel1.BackColor = Color.Transparent;
+
+            // İçindeki her bir kontrolün arka planını da şeffaf yap
+            foreach (Control ctrl in tableLayoutPanel1.Controls)
+            {
+                if (ctrl is Panel || ctrl is Label || ctrl is PictureBox)
+                {
+                    ctrl.BackColor = Color.Transparent;
+                }
+            }
+        }
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            // Arka planı şeffaf yapmak için
+            e.Graphics.FillRectangle(new SolidBrush(Color.Transparent), tableLayoutPanel1.ClientRectangle);
+        }
+
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var cp = base.CreateParams;
+                cp.ExStyle |= 0x20; // WS_EX_TRANSPARENT
+                return cp;
+            }
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            // Arka planı özel olarak çizmek
+            Graphics g = e.Graphics;
+            g.FillRectangle(new SolidBrush(Color.Transparent), this.ClientRectangle);
         }
 
         private void GuncelleUI()
@@ -146,6 +190,11 @@ namespace SavasAraclari_Prolab2
             {
                 YeniOyun();
             }
+        }
+
+        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

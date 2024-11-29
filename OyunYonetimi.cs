@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace SavasAraclari_Prolab2
 {
@@ -17,6 +18,8 @@ namespace SavasAraclari_Prolab2
         public int MevcutHamle { get; private set; } = 0;
         public bool OyunBitti { get; private set; } = false;
         public string OyunSonucu { get; private set; }
+
+        private const int KilitliKartSeviyePuani = 20;
 
         public OyunYonetimi()
         {
@@ -41,20 +44,15 @@ namespace SavasAraclari_Prolab2
             }
 
             // Kilitli kartlar: Siha, KFS, Sida (6'şar adet)
-            for (int i = 0; i < 6; i++)
-            {
-                TumKartlar.Add(new Siha($"Siha{i + 1}"));
-                TumKartlar.Add(new KFS($"KFS{i + 1}"));
-                TumKartlar.Add(new Sida($"Sida{i + 1}"));
-            }
-
-            // Karıştır
-            TumKartlar = TumKartlar.OrderBy(x => rand.Next()).ToList();
+            // Bu kartlar başlangıçta dağıtıma dahil edilmeyecek
         }
 
         // Başlangıç kartlarını oyunculara dağıtır
         private void DagitBaslangicKartlari()
         {
+            // Karıştır
+            TumKartlar = TumKartlar.OrderBy(x => rand.Next()).ToList();
+
             // Her oyuncuya 6 kart dağıtılır
             for (int i = 0; i < 6; i++)
             {
@@ -73,12 +71,18 @@ namespace SavasAraclari_Prolab2
         }
 
         // Yeni hamle gerçekleştirir
-        public void YeniHamle(List<SavasAraclari> oyuncuKartlari, List<SavasAraclari> bilgisayarKartlari)
+        public void YeniHamle()
         {
             if (OyunBitti)
                 return;
 
             MevcutHamle++;
+
+            // Kullanıcı kartlarını seçer
+            var oyuncuKartlari = OyuncuKartSecimi();
+
+            // Bilgisayar kartlarını seçer
+            var bilgisayarKartlari = BilgisayarKartSecimi();
 
             // Kartları karşılaştır ve skorları güncelle
             CompareCards(oyuncuKartlari, bilgisayarKartlari);
@@ -88,6 +92,66 @@ namespace SavasAraclari_Prolab2
 
             // Oyun bitiş koşullarını kontrol et
             CheckOyunBitis();
+        }
+
+        // Kullanıcının kart seçim işlemi
+        private List<SavasAraclari> OyuncuKartSecimi()
+        {
+            // Kullanıcı arayüzü olmadığı için ilk 3 kartı seçiyoruz
+            // Gerçek uygulamada kullanıcıdan seçim alınmalıdır
+
+            var secilebilirKartlar = Oyuncu.KartListesi.Where(k => !k.Secildi).ToList();
+
+            // Eğer seçilebilir kart sayısı 3'ten az ise, seçimleri sıfırla
+            if (secilebilirKartlar.Count < 3)
+            {
+                ResetSecim(Oyuncu.KartListesi);
+                secilebilirKartlar = Oyuncu.KartListesi;
+            }
+
+            var secilenKartlar = secilebilirKartlar.Take(3).ToList();
+
+            MarkKartlarAsSecildi(secilenKartlar);
+
+            return secilenKartlar;
+        }
+
+        // Bilgisayarın kart seçim işlemi
+        private List<SavasAraclari> BilgisayarKartSecimi()
+        {
+            var secilebilirKartlar = Bilgisayar.KartListesi.Where(k => !k.Secildi).ToList();
+
+            // Eğer seçilebilir kart sayısı 3'ten az ise, seçimleri sıfırla
+            if (secilebilirKartlar.Count < 3)
+            {
+                ResetSecim(Bilgisayar.KartListesi);
+                secilebilirKartlar = Bilgisayar.KartListesi;
+            }
+
+            // Rastgele 3 kart seç
+            var secilenKartlar = secilebilirKartlar.OrderBy(x => rand.Next()).Take(3).ToList();
+
+            MarkKartlarAsSecildi(secilenKartlar);
+
+            return secilenKartlar;
+        }
+
+        // Kart seçimlerini sıfırlar
+        private void ResetSecim(List<SavasAraclari> kartListesi)
+        {
+            foreach (var kart in kartListesi)
+            {
+                kart.Secildi = false;
+            }
+        }
+
+        // Kartları seçilmiş olarak işaretler
+        private void MarkKartlarAsSecildi(List<SavasAraclari> kartlar)
+        {
+            foreach (var kart in kartlar)
+            {
+                kart.Secildi = true;
+            }
         }
 
         // Kartları karşılaştırır ve skorları günceller
@@ -106,24 +170,31 @@ namespace SavasAraclari_Prolab2
                 int bilgisayarSaldiri = HesaplaSaldiri(bilgisayarCard, oyuncuCard);
 
                 // Dayanıklılıkların azaltılması
-                //      Burda bir düzeltme yapılacak 
-                bilgisayarCard.Dayaniklilik-= oyuncuSaldiri;
-                oyuncuCard.Dayaniklilik -= bilgisayarSaldiri;
+                oyuncuCard.HasarAl(bilgisayarSaldiri);
+                bilgisayarCard.HasarAl(oyuncuSaldiri);
 
                 // Kartların elenip elenmediğini kontrol et
-                if (bilgisayarCard.Dayaniklilik <= 0)
-                {
-                    Bilgisayar.KartListesi.Remove(bilgisayarCard);
-                    int puanArtisi = oyuncuCard.SeviyePuani >= 10 ? oyuncuCard.SeviyePuani : 10;
-                    Oyuncu.Skor += puanArtisi;
-                }
+                KartElemeKontrolu(oyuncuCard, bilgisayarCard);
+            }
+        }
 
-                if (oyuncuCard.Dayaniklilik <= 0)
-                {
-                    Oyuncu.KartListesi.Remove(oyuncuCard);
-                    int puanArtisi = bilgisayarCard.SeviyePuani >= 10 ? bilgisayarCard.SeviyePuani : 10;
-                    Bilgisayar.Skor += puanArtisi;
-                }
+        // Kartları karşılaştırır ve skorları günceller
+        private void KartElemeKontrolu(SavasAraclari oyuncuCard, SavasAraclari bilgisayarCard)
+        {
+            if (bilgisayarCard.Dayaniklilik <= 0)
+            {
+                Bilgisayar.KartListesi.Remove(bilgisayarCard);
+                int puanArtisi = Math.Max(bilgisayarCard.SeviyePuani, 10);
+                Oyuncu.Skor += puanArtisi;
+                oyuncuCard.SeviyePuani += puanArtisi; // Düzeltilmiş: oyuncuCard yerine OyuncuCard yok
+            }
+
+            if (oyuncuCard.Dayaniklilik <= 0)
+            {
+                Oyuncu.KartListesi.Remove(oyuncuCard);
+                int puanArtisi = Math.Max(oyuncuCard.SeviyePuani, 10);
+                Bilgisayar.Skor += puanArtisi;
+                bilgisayarCard.SeviyePuani += puanArtisi; // Düzeltilmiş: bilgisayarCard yerine BilgisayarCard yok
             }
         }
 
@@ -132,7 +203,7 @@ namespace SavasAraclari_Prolab2
         {
             int saldiri = atacan.VurusGucu;
 
-            // Saldırı avantajını ekle
+            // Sınıf avantajını kontrol et ve vuruş avantajını ekle
             saldiri += atacan.VurusAvantaji(hedef.Sinif);
 
             return saldiri;
@@ -141,18 +212,57 @@ namespace SavasAraclari_Prolab2
         // Yeni kart dağıtır
         private void DagitYeniKartlar()
         {
+            // Önce kilitli kartların açılıp açılmadığını kontrol edelim
+            KontrolEtKilitliKartlar();
+
             // Her iki oyuncunun elindeki kart sayısını 6'ya tamamla
-            while (Oyuncu.KartListesi.Count < 6 && TumKartlar.Count > 0)
+            KartlariTamamla(Oyuncu);
+            KartlariTamamla(Bilgisayar);
+        }
+
+        // Oyuncunun elindeki kartları 6'ya tamamlar
+        private void KartlariTamamla(Oyuncu oyuncu)
+        {
+            while (oyuncu.KartListesi.Count < 6 && TumKartlar.Count > 0)
             {
-                Oyuncu.KartListesi.Add(TumKartlar[0]);
+                oyuncu.KartListesi.Add(TumKartlar[0]);
                 TumKartlar.RemoveAt(0);
+            }
+        }
+
+        // Kilitli kartların açılıp açılmadığını kontrol eder
+        private void KontrolEtKilitliKartlar()
+        {
+            // Oyuncu seviye puanı yeterli ise kilitli kartlar dağıtıma eklenir
+            if (Oyuncu.ToplamSeviyePuani >= KilitliKartSeviyePuani && !Oyuncu.KilitliKartlarAcildi)
+            {
+                TumKartlar.AddRange(GetKilitliKartlar());
+                TumKartlar = TumKartlar.OrderBy(x => rand.Next()).ToList();
+                Oyuncu.KilitliKartlarAcildi = true;
             }
 
-            while (Bilgisayar.KartListesi.Count < 6 && TumKartlar.Count > 0)
+            // Bilgisayar seviye puanı yeterli ise kilitli kartlar dağıtıma eklenir
+            if (Bilgisayar.ToplamSeviyePuani >= KilitliKartSeviyePuani && !Bilgisayar.KilitliKartlarAcildi)
             {
-                Bilgisayar.KartListesi.Add(TumKartlar[0]);
-                TumKartlar.RemoveAt(0);
+                TumKartlar.AddRange(GetKilitliKartlar());
+                TumKartlar = TumKartlar.OrderBy(x => rand.Next()).ToList();
+                Bilgisayar.KilitliKartlarAcildi = true;
             }
+        }
+
+        // Kilitli kartları oluşturur
+        private List<SavasAraclari> GetKilitliKartlar()
+        {
+            List<SavasAraclari> kilitliKartlar = new List<SavasAraclari>();
+
+            for (int i = 0; i < 6; i++)
+            {
+                kilitliKartlar.Add(new Siha($"Siha{i + 1}"));
+                kilitliKartlar.Add(new KFS($"KFS{i + 1}"));
+                kilitliKartlar.Add(new Sida($"Sida{i + 1}"));
+            }
+
+            return kilitliKartlar;
         }
 
         // Oyun bitiş koşullarını kontrol eder
@@ -163,6 +273,20 @@ namespace SavasAraclari_Prolab2
             {
                 OyunBitti = true;
                 BelirleOyunSonucu();
+            }
+            else
+            {
+                // Eğer taraflardan birinin elindeki kart sayısı 1 ise, ona fazladan 1 kart daha ver
+                if (Oyuncu.KartListesi.Count == 1 && TumKartlar.Count > 0)
+                {
+                    Oyuncu.KartListesi.Add(TumKartlar[0]);
+                    TumKartlar.RemoveAt(0);
+                }
+                if (Bilgisayar.KartListesi.Count == 1 && TumKartlar.Count > 0)
+                {
+                    Bilgisayar.KartListesi.Add(TumKartlar[0]);
+                    TumKartlar.RemoveAt(0);
+                }
             }
         }
 
@@ -185,13 +309,15 @@ namespace SavasAraclari_Prolab2
 
                 if (oyuncuDayaniklilik > bilgisayarDayaniklilik)
                 {
+                    int fark = oyuncuDayaniklilik - bilgisayarDayaniklilik;
                     OyunSonucu = "Skorlar Eşit, Oyuncu Dayanıklılık Avantajıyla Kazandı!";
-                    Oyuncu.Skor += (oyuncuDayaniklilik - bilgisayarDayaniklilik);
+                    Oyuncu.Skor += fark;
                 }
                 else if (bilgisayarDayaniklilik > oyuncuDayaniklilik)
                 {
+                    int fark = bilgisayarDayaniklilik - oyuncuDayaniklilik;
                     OyunSonucu = "Skorlar Eşit, Bilgisayar Dayanıklılık Avantajıyla Kazandı!";
-                    Bilgisayar.Skor += (bilgisayarDayaniklilik - oyuncuDayaniklilik);
+                    Bilgisayar.Skor += fark;
                 }
                 else
                 {

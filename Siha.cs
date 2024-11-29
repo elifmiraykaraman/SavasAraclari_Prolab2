@@ -6,31 +6,40 @@ using System.Threading.Tasks;
 using System.Drawing;
 
 
+
 namespace SavasAraclari_Prolab2
 {
     public class Siha : HavaAraclari
     {
         public override string Sinif => "Hava";
-        public override string AltSinif => "SİHA";
-        public override int KaraVurusAvantaji => 0;
-        public override int DenizVurusAvantaji => 5;
-        public override int VurusGucu => 15;
+        public override string AltSinif => "Siha";
+        public override int KaraVurusAvantaji => 10;
+        public override int DenizVurusAvantaji => 10;
+        public override int VurusGucu => 10;
 
-        private int _dayaniklilik;
-        public string Isim { get; private set; } // İsim özelliği düzgün bir şekilde tanımlandı.
+        public override int Dayaniklilik { get; protected set; }
 
         public Siha(string isim)
-            : base(isim, Properties.Resources.Siha, 15) // Üst sınıfın constructor'ını çağırıyoruz
+            : base(isim, Properties.Resources.Siha, 15)
         {
-            Isim = isim;
-            _dayaniklilik = 15; // Başlangıç dayanıklılığını ayarla
+            Dayaniklilik = 15;
         }
-
-        public override int Dayaniklilik => _dayaniklilik;
 
         public override int VurusAvantaji(string rakipSinif)
         {
-            return rakipSinif == "Deniz" ? DenizVurusAvantaji : 0;
+            int avantaj = 0;
+            if (rakipSinif == "Kara")
+                avantaj += KaraVurusAvantaji;
+            if (rakipSinif == "Deniz")
+                avantaj += DenizVurusAvantaji;
+            return avantaj;
+        }
+
+        public override void HasarAl(int hasarMiktari)
+        {
+            Dayaniklilik -= hasarMiktari;
+            if (Dayaniklilik < 0)
+                Dayaniklilik = 0;
         }
     }
 }

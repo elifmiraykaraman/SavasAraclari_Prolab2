@@ -25,12 +25,28 @@ namespace SavasAraclari_Prolab2
             Isim = isim;
             _dayaniklilik = 20; // Başlangıç dayanıklılığını ayarla
         }
+        public override int VurusAvantaji(string rakipSinif)
+        {
+            int avantaj = 0;
+            if (rakipSinif == "Kara")
+                avantaj += KaraVurusAvantaji;
+            if (rakipSinif == "Deniz")
+                avantaj += DenizVurusAvantaji;
+            return avantaj;
+        }
+
+        public override void HasarAl(int hasarMiktari)
+        {
+            _dayaniklilik -= hasarMiktari;
+            if (_dayaniklilik < 0)
+                _dayaniklilik = 0;
+        }
 
         public override int Dayaniklilik => _dayaniklilik;
 
-        public override int VurusAvantaji(string rakipSinif)
-        {
-            return rakipSinif == "Kara" ? KaraVurusAvantaji : 0;
-        }
+       // public override int VurusAvantaji(string rakipSinif)
+        //{
+          //  return rakipSinif == "Kara" ? KaraVurusAvantaji : 0;
+        //}
     }
 }

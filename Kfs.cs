@@ -10,25 +10,31 @@ namespace SavasAraclari_Prolab2
 {
     public class KFS : KaraAraclari
     {
-        public string isim;
         public override string Sinif => "Kara";
         public override string AltSinif => "KFS";
         public override int DenizVurusAvantaji => 0;
         public override int HavaVurusAvantaji => 5;
         public override int VurusGucu => 25;
+        public override int Dayaniklilik { get; protected set; }
 
-        private int _dayaniklilik;
 
         public KFS(string isim)
+            : base(isim, Properties.Resources.KFS, 10)
         {
-            _dayaniklilik = 10;
-            this.isim = isim;
+           
         }
 
-        public override int Dayaniklilik => _dayaniklilik;
         public override int VurusAvantaji(string rakipSinif)
         {
             return rakipSinif == "Hava" ? HavaVurusAvantaji : 0;
+        }
+
+        // Dayanıklılığı azaltmak veya değiştirmek için bir metot ekleyebilirsiniz
+        public void HasarAl(int hasarMiktari)
+        {
+            Dayaniklilik -= hasarMiktari;
+            if (Dayaniklilik < 0)
+                Dayaniklilik = 0;
         }
     }
 }

@@ -63,6 +63,16 @@ namespace SavasAraclari_Prolab2.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap ARKA_PLAN {
+            get {
+                object obj = ResourceManager.GetObject("ARKA_PLAN", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap Firkateyn {
             get {
                 object obj = ResourceManager.GetObject("Firkateyn", resourceCulture);

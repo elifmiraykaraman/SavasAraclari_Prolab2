@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace SavasAraclari_Prolab2
 {
-    public class BilgisayarOyuncu : Oyuncu
+    public class BilgisayarOyuncu 
     {
+        /*
         private Random rand;
 
         public BilgisayarOyuncu(int oyuncuID, string oyuncuAdi, int skor)
@@ -34,5 +35,6 @@ namespace SavasAraclari_Prolab2
 
             return secilenKartlar;
         }
+        */
     }
 }

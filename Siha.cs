@@ -9,8 +9,65 @@ using System.Drawing;
 
 namespace SavasAraclari_Prolab2
 {
+    
     public class Siha : HavaAraclari
     {
+        private static int sayac = 0;
+
+        public Siha()
+            : base(90, 0, 25, "Hava", 10)
+        {
+            sayac++;
+            this.KartAdi = "SİHA" + sayac;
+        }
+
+        public static void SayacSifirla()
+        {
+            sayac = 0;
+        }
+
+        /*
+        protected int denizVurusAvantaji;
+        private static int sayac = 0;
+        public static void SayacSifirla()
+        {
+            sayac = 0;
+        }
+
+        public override int Dayaniklilik
+        {
+            get { return dayaniklilik; }
+            set { dayaniklilik = value; }
+        }
+
+        public override int Vurus
+        {
+            get { return vurus; }
+            set { vurus = value; }
+        }
+
+        public override string Sinif
+        {
+            get { return sinif; }
+            set { sinif = value; }
+        }
+
+        public Siha()
+            : base(90, 0, 25, "Hava", 10)
+        {
+            this.denizVurusAvantaji = 15;
+            sayac++;
+            this.KartAdi = "Siha" + sayac; 
+        }
+
+        public override void DurumGuncelle(int hasar)
+        {
+            dayaniklilik -= hasar;
+            seviyePuani += 10;
+        }
+
+        */
+        /*
         public override string Sinif => "Hava";
         public override string AltSinif => "Siha";
         public override int KaraVurusAvantaji => 10;
@@ -41,5 +98,6 @@ namespace SavasAraclari_Prolab2
             if (Dayaniklilik < 0)
                 Dayaniklilik = 0;
         }
+        */
     }
 }

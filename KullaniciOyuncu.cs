@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace SavasAraclari_Prolab2
 {
-    public class KullaniciOyuncu : Oyuncu
+    public class KullaniciOyuncu 
     {
+        /*
         public KullaniciOyuncu(int oyuncuID, string oyuncuAdi, int skor)
             : base(oyuncuID, oyuncuAdi, skor)
         {
@@ -22,5 +23,6 @@ namespace SavasAraclari_Prolab2
             // Burada basitçe seçilen kartların listesini döndürüyoruz.
             return KartListesi.Take(3).ToList();
         }
+        */
     }
 }

@@ -10,6 +10,59 @@ namespace SavasAraclari_Prolab2
 {
     public class Ucak : HavaAraclari
     {
+
+        private static int sayac = 0;
+
+        public Ucak()
+            : base(100, 0, 20, "Hava", 10)
+        {
+            sayac++;
+            this.KartAdi = "Uçak" + sayac;
+        }
+
+        public static void SayacSifirla()
+        {
+            sayac = 0;
+        }
+        /*
+        private static int sayac = 0;
+        public static void SayacSifirla()
+        {
+            sayac = 0;
+        }
+        public override int Dayaniklilik
+        {
+            get { return dayaniklilik; }
+            set { dayaniklilik = value; }
+        }
+
+        public override int Vurus
+        {
+            get { return vurus; }
+            set { vurus = value; }
+        }
+
+        public override string Sinif
+        {
+            get { return sinif; }
+            set { sinif = value; }
+        }
+
+        public Ucak()
+            : base(100, 0, 20, "Hava", 10)
+        {
+            sayac++; 
+            this.KartAdi = "Ucak" + sayac; 
+        }
+
+        public override void DurumGuncelle(int hasar)
+        {
+            dayaniklilik -= hasar;
+            seviyePuani += 5;
+        }
+
+        */
+        /*
         public override string Sinif => "Hava";
         public override string AltSinif => "Uçak";
         public override int KaraVurusAvantaji => 5;
@@ -48,5 +101,6 @@ namespace SavasAraclari_Prolab2
         //{
           //  return rakipSinif == "Kara" ? KaraVurusAvantaji : 0;
         //}
+        */
     }
 }

@@ -9,6 +9,320 @@ namespace SavasAraclari_Prolab2
 {
     public class OyunYonetimi
     {
+        public Oyuncu oyuncu;
+        public Oyuncu bilgisayar;
+        private int hamleSayisi;
+
+        public OyunYonetimi()
+        {
+            oyuncu = new Oyuncu(1, "Oyuncu");
+            bilgisayar = new Oyuncu(2, "Bilgisayar");
+            hamleSayisi = 0;
+        }
+
+        public void OyunuBaslat()
+        {
+            SayaclariSifirla();
+            KartlariDagit();
+
+            while (hamleSayisi < 5 && oyuncu.ElKartlari.Count > 0 && bilgisayar.ElKartlari.Count > 0)
+            {
+                hamleSayisi++;
+                Console.WriteLine($"\n--- {hamleSayisi}. Hamle ---");
+
+                var oyuncuKartlari = oyuncu.ElKartlari.Except(oyuncu.KullanilmisKartlar).Take(3).ToList();
+                var bilgisayarKartlari = bilgisayar.ElKartlari.Except(bilgisayar.KullanilmisKartlar).Take(3).ToList();
+
+                SaldiriHesapla(oyuncuKartlari, bilgisayarKartlari);
+
+                YeniKartVer(oyuncu);
+                YeniKartVer(bilgisayar);
+
+                KilitliKartlariKontrolEt(oyuncu);
+                KilitliKartlariKontrolEt(bilgisayar);
+
+                oyuncu.KullanilmisKartlariKontrolEt();
+                bilgisayar.KullanilmisKartlariKontrolEt();
+
+                if (oyuncu.ElKartlari.Count == 0 || bilgisayar.ElKartlari.Count == 0)
+                    break;
+            }
+
+            OyunuBitir();
+        }
+
+        private void SayaclariSifirla()
+        {
+            Ucak.SayacSifirla();
+            Obus.SayacSifirla();
+            Firkateyn.SayacSifirla();
+            Siha.SayacSifirla();
+            KFS.SayacSifirla();
+            Sida.SayacSifirla();
+        }
+
+        private void KartlariDagit()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                oyuncu.ElKartlari.Add(RastgeleKartOlustur(false));
+                bilgisayar.ElKartlari.Add(RastgeleKartOlustur(false));
+            }
+        }
+
+        private void YeniKartVer(Oyuncu oyuncu)
+        {
+            bool kilitliKartlarAcik = oyuncu.Skor >= 20;
+            var yeniKart = RastgeleKartOlustur(kilitliKartlarAcik);
+            oyuncu.ElKartlari.Add(yeniKart);
+        }
+
+        private void KilitliKartlariKontrolEt(Oyuncu oyuncu)
+        {
+            if (oyuncu.Skor >= 20 && !oyuncu.ElKartlari.Any(k => k is Siha || k is KFS || k is Sida))
+            {
+                oyuncu.ElKartlari.Add(new Siha());
+                oyuncu.ElKartlari.Add(new KFS());
+                oyuncu.ElKartlari.Add(new Sida());
+            }
+        }
+
+        private void SaldiriHesapla(List<SavasAraclari> oyuncuKartlari, List<SavasAraclari> bilgisayarKartlari)
+        {
+            for (int i = 0; i < oyuncuKartlari.Count; i++)
+            {
+                var oyuncuKart = oyuncuKartlari[i];
+                var bilgisayarKart = bilgisayarKartlari[i];
+
+                int oyuncuHasar = oyuncuKart.Vurus;
+                int bilgisayarHasar = bilgisayarKart.Vurus;
+
+                // Sınıf avantajlarını hesaplayın
+                oyuncuHasar = SinifAvantajiHesapla(oyuncuKart, bilgisayarKart, oyuncuHasar);
+                bilgisayarHasar = SinifAvantajiHesapla(bilgisayarKart, oyuncuKart, bilgisayarHasar);
+
+                // Kartların durumunu güncelleyin
+                oyuncuKart.DurumGuncelle(bilgisayarHasar);
+                bilgisayarKart.DurumGuncelle(oyuncuHasar);
+
+                // Skorları güncelleyin
+                oyuncu.Skor += oyuncuKart.SeviyePuani;
+                bilgisayar.Skor += bilgisayarKart.SeviyePuani;
+
+                // Kullanılmış kartlara ekleyin
+                oyuncu.KullanilmisKartlar.Add(oyuncuKart);
+                bilgisayar.KullanilmisKartlar.Add(bilgisayarKart);
+            }
+        }
+
+        private int SinifAvantajiHesapla(SavasAraclari saldiranKart, SavasAraclari savunanKart, int hasar)
+        {
+            // Örnek sınıf avantajları
+            if (saldiranKart.Sinif == "Hava" && savunanKart.Sinif == "Kara")
+            {
+                hasar += saldiranKart.Vurus * 20 / 100;
+            }
+            else if (saldiranKart.Sinif == "Kara" && savunanKart.Sinif == "Deniz")
+            {
+                hasar += saldiranKart.Vurus * 20 / 100;
+            }
+            else if (saldiranKart.Sinif == "Deniz" && savunanKart.Sinif == "Hava")
+            {
+                hasar += saldiranKart.Vurus * 20 / 100;
+            }
+
+            return hasar;
+        }
+
+        private SavasAraclari RastgeleKartOlustur(bool kilitliKartlarAcik)
+        {
+            Random rnd = new Random();
+            int kartTipi = rnd.Next(1, kilitliKartlarAcik ? 7 : 4);
+
+            switch (kartTipi)
+            {
+                case 1: return new Ucak();
+                case 2: return new Obus();
+                case 3: return new Firkateyn();
+                case 4: return new Siha();
+                case 5: return new KFS();
+                case 6: return new Sida();
+                default: return new Ucak();
+            }
+        }
+
+        private void OyunuBitir()
+        {
+            Console.WriteLine("\n--- Oyun Bitti ---");
+            Console.WriteLine($"{oyuncu.OyuncuAdi} Skor: {oyuncu.Skor}");
+            Console.WriteLine($"{bilgisayar.OyuncuAdi} Skor: {bilgisayar.Skor}");
+
+            if (oyuncu.Skor > bilgisayar.Skor)
+                Console.WriteLine("Oyunu Kazandınız!");
+            else if (oyuncu.Skor < bilgisayar.Skor)
+                Console.WriteLine("Bilgisayar Kazandı!");
+            else
+                Console.WriteLine("Oyun Berabere!");
+        }
+        /*
+        public Oyuncu oyuncu;
+        public Oyuncu bilgisayar;
+        private int hamleSayisi;
+
+        public OyunYonetimi()
+        {
+            oyuncu = new Oyuncu(1, "Oyuncu");
+            bilgisayar = new Oyuncu(2, "Bilgisayar");
+            hamleSayisi = 0;
+        }
+
+        public void OyunuBaslat()
+        {
+            SayaclariSifirla();
+            KartlariDagit();
+
+            while (hamleSayisi < 5 && oyuncu.ElKartlari.Count > 0 && bilgisayar.ElKartlari.Count > 0)
+            {
+                hamleSayisi++;
+                Console.WriteLine($"\n--- {hamleSayisi}. Hamle ---");
+
+                var oyuncuKartlari = oyuncu.ElKartlari.Except(oyuncu.KullanilmisKartlar).Take(3).ToList();
+                var bilgisayarKartlari = bilgisayar.ElKartlari.Except(bilgisayar.KullanilmisKartlar).Take(3).ToList();
+
+                SaldiriHesapla(oyuncuKartlari, bilgisayarKartlari);
+
+                YeniKartVer(oyuncu);
+                YeniKartVer(bilgisayar);
+
+                KilitliKartlariKontrolEt(oyuncu);
+                KilitliKartlariKontrolEt(bilgisayar);
+
+                oyuncu.KullanilmisKartlariKontrolEt();
+                bilgisayar.KullanilmisKartlariKontrolEt();
+
+                if (oyuncu.ElKartlari.Count == 0 || bilgisayar.ElKartlari.Count == 0)
+                    break;
+            }
+
+            OyunuBitir();
+        }
+
+        private void SayaclariSifirla()
+        {
+            Ucak.SayacSifirla();
+            Obus.SayacSifirla();
+            Firkateyn.SayacSifirla();
+            Siha.SayacSifirla();
+            KFS.SayacSifirla();
+            Sida.SayacSifirla();
+        }
+
+        private void KartlariDagit()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                oyuncu.ElKartlari.Add(RastgeleKartOlustur(false));
+                bilgisayar.ElKartlari.Add(RastgeleKartOlustur(false));
+            }
+        }
+
+        private void YeniKartVer(Oyuncu oyuncu)
+        {
+            bool kilitliKartlarAcik = oyuncu.Skor >= 20;
+            var yeniKart = RastgeleKartOlustur(kilitliKartlarAcik);
+            oyuncu.ElKartlari.Add(yeniKart);
+        }
+
+        private void KilitliKartlariKontrolEt(Oyuncu oyuncu)
+        {
+            if (oyuncu.Skor >= 20 && !oyuncu.ElKartlari.Any(k => k is Siha || k is KFS || k is Sida))
+            {
+                oyuncu.ElKartlari.Add(new Siha());
+                oyuncu.ElKartlari.Add(new KFS());
+                oyuncu.ElKartlari.Add(new Sida());
+            }
+        }
+
+        private void SaldiriHesapla(List<SavasAraclari> oyuncuKartlari, List<SavasAraclari> bilgisayarKartlari)
+        {
+            for (int i = 0; i < oyuncuKartlari.Count; i++)
+            {
+                var oyuncuKart = oyuncuKartlari[i];
+                var bilgisayarKart = bilgisayarKartlari[i];
+
+                int oyuncuHasar = oyuncuKart.Vurus;
+                int bilgisayarHasar = bilgisayarKart.Vurus;
+
+                // Sınıf avantajlarını hesaplayın
+                oyuncuHasar = SinifAvantajiHesapla(oyuncuKart, bilgisayarKart, oyuncuHasar);
+                bilgisayarHasar = SinifAvantajiHesapla(bilgisayarKart, oyuncuKart, bilgisayarHasar);
+
+                // Kartların durumunu güncelleyin
+                oyuncuKart.DurumGuncelle(bilgisayarHasar);
+                bilgisayarKart.DurumGuncelle(oyuncuHasar);
+
+                // Skorları güncelleyin
+                oyuncu.Skor += oyuncuKart.SeviyePuani;
+                bilgisayar.Skor += bilgisayarKart.SeviyePuani;
+
+                // Kullanılmış kartlara ekleyin
+                oyuncu.KullanilmisKartlar.Add(oyuncuKart);
+                bilgisayar.KullanilmisKartlar.Add(bilgisayarKart);
+            }
+        }
+
+        private int SinifAvantajiHesapla(SavasAraclari saldiranKart, SavasAraclari savunanKart, int hasar)
+        {
+            // Örnek sınıf avantajları
+            if (saldiranKart.Sinif == "Hava" && savunanKart.Sinif == "Kara")
+            {
+                hasar += saldiranKart.Vurus * 20 / 100;
+            }
+            else if (saldiranKart.Sinif == "Kara" && savunanKart.Sinif == "Deniz")
+            {
+                hasar += saldiranKart.Vurus * 20 / 100;
+            }
+            else if (saldiranKart.Sinif == "Deniz" && savunanKart.Sinif == "Hava")
+            {
+                hasar += saldiranKart.Vurus * 20 / 100;
+            }
+
+            return hasar;
+        }
+
+        private SavasAraclari RastgeleKartOlustur(bool kilitliKartlarAcik)
+        {
+            Random rnd = new Random();
+            int kartTipi = rnd.Next(1, kilitliKartlarAcik ? 7 : 4);
+
+            switch (kartTipi)
+            {
+                case 1: return new Ucak();
+                case 2: return new Obus();
+                case 3: return new Firkateyn();
+                case 4: return new Siha();
+                case 5: return new KFS();
+                case 6: return new Sida();
+                default: return new Ucak();
+            }
+        }
+
+        private void OyunuBitir()
+        {
+            Console.WriteLine("\n--- Oyun Bitti ---");
+            Console.WriteLine($"{oyuncu.OyuncuAdi} Skor: {oyuncu.Skor}");
+            Console.WriteLine($"{bilgisayar.OyuncuAdi} Skor: {bilgisayar.Skor}");
+
+            if (oyuncu.Skor > bilgisayar.Skor)
+                Console.WriteLine("Oyunu Kazandınız!");
+            else if (oyuncu.Skor < bilgisayar.Skor)
+                Console.WriteLine("Bilgisayar Kazandı!");
+            else
+                Console.WriteLine("Oyun Berabere!");
+        }
+
+        */
+        /*
         public Oyuncu Oyuncu { get; private set; }
         public Oyuncu Bilgisayar { get; private set; }
         private List<SavasAraclari> TumKartlar;
@@ -325,5 +639,6 @@ namespace SavasAraclari_Prolab2
                 }
             }
         }
+        */
     }
 }

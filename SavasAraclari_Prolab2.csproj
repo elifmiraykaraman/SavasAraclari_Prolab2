@@ -46,10 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BilgisayarOyuncu.cs" />
     <Compile Include="DenizAraclari1.cs" />
     <Compile Include="Firkateyn.cs" />
-    <Compile Include="FirkateynKart.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,23 +56,15 @@
     </Compile>
     <Compile Include="HavaAraclari.cs" />
     <Compile Include="KaraAraclari.cs" />
-    <Compile Include="Kart.cs" />
     <Compile Include="Kfs.cs" />
-    <Compile Include="KfsKart.cs" />
-    <Compile Include="KullaniciOyuncu.cs" />
     <Compile Include="Obus.cs" />
-    <Compile Include="ObusKart.cs" />
-    <Compile Include="Oyuncu.cs" />
     <Compile Include="OyunYonetimi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SavasAraclari.cs" />
     <Compile Include="Sida.cs" />
-    <Compile Include="SidaKart.cs" />
     <Compile Include="Siha.cs" />
-    <Compile Include="SihaKart.cs" />
     <Compile Include="Ucak.cs" />
-    <Compile Include="UcakKart.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +76,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -99,6 +90,44 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gizli.bmp" />
+    <None Include="Resources\gizli.png" />
+    <Content Include="Resources\Ucak.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Siha.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Sida.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Obus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\KFS.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Firkateyn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ARKA_PLAN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ARKA_PLAN1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

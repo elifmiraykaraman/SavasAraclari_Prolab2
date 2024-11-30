@@ -7,6 +7,7 @@ using System.Drawing;
 
 namespace SavasAraclari_Prolab2
 {
+    /*
     public class OyunYonetimi
     {
         public Oyuncu oyuncu;
@@ -639,6 +640,7 @@ namespace SavasAraclari_Prolab2
                 }
             }
         }
-        */
+       
     }
+    */
 }

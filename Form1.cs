@@ -50,7 +50,7 @@ namespace SavasAraclari_Prolab2
             {
                 bilgisayarKartlari.Add(RastgeleKartOlustur(false));
             }
-            foreach (var kart in eldekiKartlar)
+            foreach (var kart in bilgisayarKartlari)
             {
                 PictureBox pictureBoxKart1 = new PictureBox();
                 pictureBoxKart1.Image = ResimGetir(kart);
@@ -63,7 +63,7 @@ namespace SavasAraclari_Prolab2
             }
 
             // İlk tur için kartları güncelle ve göster
-            KartlariGuncelleVeGoster();
+            BilgisayarKartlariGuncelleVeGoster();
         }
         private void KartlariOlusturVeEkle()
         {
@@ -122,7 +122,7 @@ namespace SavasAraclari_Prolab2
                 return;
             }
 
-            var bilgisayarKartlariSecimi = BilgisayarKartSec();
+            var bilgisayarSecilenKartlar= BilgisayarKartSec();
 
 
             if (bilgisayarSecilenKartlar.Count != 3)
@@ -174,7 +174,7 @@ namespace SavasAraclari_Prolab2
             // Seçilebilir kartları güncelle
             secilebilirKartlar = eldekiKartlar.Except(kullanilmisKartlar).ToList();
 
-            foreach (var kart in eldekiKartlar)
+            foreach (var kart in secilebilirKartlar)
             {
                 PictureBox pictureBoxKart = new PictureBox();
                 pictureBoxKart.Image = ResimGetir(kart);
@@ -217,7 +217,7 @@ namespace SavasAraclari_Prolab2
 
             
             // Kartları panale ekleyin
-            foreach (var kart in bilgisayarKartlari)
+            foreach (var kart in bilgisayarSecilebilirKartlar)
             {
                 PictureBox pictureBoxKart1 = new PictureBox();
                 pictureBoxKart1.Image = ResimGetir(kart);
@@ -319,7 +319,7 @@ namespace SavasAraclari_Prolab2
         private List<SavasAraclari> BilgisayarKartSec()
         {
             // Bilgisayarın seçilebilir kartları
-            bilgisayarSecilebilirKartlar = eldekiKartlar.Except(kullanilmisKartlar).ToList();
+            bilgisayarSecilebilirKartlar = bilgisayarKartlari.Except(bilgisayarKullanilmisKartlar).ToList();
 
             
 
@@ -405,212 +405,217 @@ namespace SavasAraclari_Prolab2
 
         private Image ResimGetir(SavasAraclari kart)
         {
-            if (kart is Ucak)
-                return Properties.Resources.Ucak;
-            else if (kart is Obus)
-                return Properties.Resources.Obus;
-            else if (kart is Firkateyn)
-                return Properties.Resources.Firkateyn;
-            else if (kart is Siha)
-                return Properties.Resources.Siha;
-            else if (kart is KFS)
-                return Properties.Resources.KFS;
-            else if (kart is Sida)
-                return Properties.Resources.Sida;
-            else
-                return null;
+           
+                if (kart is Ucak)
+                    return Properties.Resources.Ucak;
+                else if (kart is Obus)
+                    return Properties.Resources.Obus;
+                else if (kart is Firkateyn)
+                    return Properties.Resources.Firkateyn;
+                else if (kart is Siha)
+                    return Properties.Resources.Siha;
+                else if (kart is KFS)
+                    return Properties.Resources.KFS;
+                else if (kart is Sida)
+                    return Properties.Resources.Sida;
+                else
+                    return null;
+            
+            
         }
+
+        
         /*
-        //          YEDEKKK
-        private OyunYonetimi oyunYonetimi; // Oyun yönetimi nesnesi
-        private List<Kart> secilenKartlar = new List<Kart>(); // Oyuncunun seçtiği kartlar
-        private PictureBox[] pbOyuncuKartlar; // Oyuncu kartlarını temsil eden PictureBox'lar
+//          YEDEKKK
+private OyunYonetimi oyunYonetimi; // Oyun yönetimi nesnesi
+private List<Kart> secilenKartlar = new List<Kart>(); // Oyuncunun seçtiği kartlar
+private PictureBox[] pbOyuncuKartlar; // Oyuncu kartlarını temsil eden PictureBox'lar
 
-        public Form1()
-        {
-            InitializeComponent();
+public Form1()
+{
+   InitializeComponent();
 
-            // Oyun yönetimini başlat
-            oyunYonetimi = new OyunYonetimi();
+   // Oyun yönetimini başlat
+   oyunYonetimi = new OyunYonetimi();
 
-            // PictureBox'ları bir diziye al
-            pbOyuncuKartlar = new PictureBox[]
-            {
-                pbOyuncuKart1, pbOyuncuKart2, pbOyuncuKart3,
-                pbOyuncuKart4, pbOyuncuKart5, pbOyuncuKart6
-            };
+   // PictureBox'ları bir diziye al
+   pbOyuncuKartlar = new PictureBox[]
+   {
+       pbOyuncuKart1, pbOyuncuKart2, pbOyuncuKart3,
+       pbOyuncuKart4, pbOyuncuKart5, pbOyuncuKart6
+   };
 
-            // Oyuncu kartlarına tıklama olaylarını bağla
-            foreach (var pb in pbOyuncuKartlar)
-            {
-                pb.Click += OyuncuKart_Click;
-            }
+   // Oyuncu kartlarına tıklama olaylarını bağla
+   foreach (var pb in pbOyuncuKartlar)
+   {
+       pb.Click += OyuncuKart_Click;
+   }
 
-            // Form yüklendiğinde çalışacak olay işleyiciyi bağla
-            this.Load += Form1_Load;
+   // Form yüklendiğinde çalışacak olay işleyiciyi bağla
+   this.Load += Form1_Load;
 
-            // UI'yi güncelle
-            GuncelleUI();
-        }
+   // UI'yi güncelle
+   GuncelleUI();
+}
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // Form arka planını ayarla
-            this.BackgroundImage = Properties.Resources.ARKA_PLAN; // Arka plan görseli
-            this.BackgroundImageLayout = ImageLayout.Stretch;
+private void Form1_Load(object sender, EventArgs e)
+{
+   // Form arka planını ayarla
+   this.BackgroundImage = Properties.Resources.ARKA_PLAN; // Arka plan görseli
+   this.BackgroundImageLayout = ImageLayout.Stretch;
 
-            // TableLayoutPanel'i şeffaf yap
-            tableLayoutPanel1.BackColor = Color.Transparent;
+   // TableLayoutPanel'i şeffaf yap
+   tableLayoutPanel1.BackColor = Color.Transparent;
 
-            // İçindeki her bir kontrolün arka planını da şeffaf yap
-            foreach (Control ctrl in tableLayoutPanel1.Controls)
-            {
-                if (ctrl is Panel || ctrl is Label || ctrl is PictureBox)
-                {
-                    ctrl.BackColor = Color.Transparent;
-                }
-            }
-        }
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-            // Arka planı şeffaf yapmak için
-            e.Graphics.FillRectangle(new SolidBrush(Color.Transparent), tableLayoutPanel1.ClientRectangle);
-        }
+   // İçindeki her bir kontrolün arka planını da şeffaf yap
+   foreach (Control ctrl in tableLayoutPanel1.Controls)
+   {
+       if (ctrl is Panel || ctrl is Label || ctrl is PictureBox)
+       {
+           ctrl.BackColor = Color.Transparent;
+       }
+   }
+}
+private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+{
+   // Arka planı şeffaf yapmak için
+   e.Graphics.FillRectangle(new SolidBrush(Color.Transparent), tableLayoutPanel1.ClientRectangle);
+}
 
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                var cp = base.CreateParams;
-                cp.ExStyle |= 0x20; // WS_EX_TRANSPARENT
-                return cp;
-            }
-        }
+protected override CreateParams CreateParams
+{
+   get
+   {
+       var cp = base.CreateParams;
+       cp.ExStyle |= 0x20; // WS_EX_TRANSPARENT
+       return cp;
+   }
+}
 
-        protected override void OnPaintBackground(PaintEventArgs e)
-        {
-            // Arka planı özel olarak çizmek
-            Graphics g = e.Graphics;
-            g.FillRectangle(new SolidBrush(Color.Transparent), this.ClientRectangle);
-        }
+protected override void OnPaintBackground(PaintEventArgs e)
+{
+   // Arka planı özel olarak çizmek
+   Graphics g = e.Graphics;
+   g.FillRectangle(new SolidBrush(Color.Transparent), this.ClientRectangle);
+}
 
-        private void GuncelleUI()
-        {
-            // Oyuncunun elindeki kartları güncelle
-            var oyuncuKartlari = oyunYonetimi.Oyuncu.KartListesi;
+private void GuncelleUI()
+{
+   // Oyuncunun elindeki kartları güncelle
+   var oyuncuKartlari = oyunYonetimi.Oyuncu.KartListesi;
 
-            for (int i = 0; i < pbOyuncuKartlar.Length; i++)
-            {
-                if (i < oyuncuKartlari.Count)
-                {
-                    pbOyuncuKartlar[i].Image = oyuncuKartlari[i].Image; // Kart görselini ayarla
-                    pbOyuncuKartlar[i].Enabled = true; // Tıklanabilir yap
-                    pbOyuncuKartlar[i].Tag = oyuncuKartlari[i]; // Kartı Tag ile ilişkilendir
-                }
-                else
-                {
-                    pbOyuncuKartlar[i].Image = null; // Görseli temizle
-                    pbOyuncuKartlar[i].Enabled = false; // Tıklanamaz yap
-                    pbOyuncuKartlar[i].Tag = null; // İlişkiyi kaldır
-                }
-            }
+   for (int i = 0; i < pbOyuncuKartlar.Length; i++)
+   {
+       if (i < oyuncuKartlari.Count)
+       {
+           pbOyuncuKartlar[i].Image = oyuncuKartlari[i].Image; // Kart görselini ayarla
+           pbOyuncuKartlar[i].Enabled = true; // Tıklanabilir yap
+           pbOyuncuKartlar[i].Tag = oyuncuKartlari[i]; // Kartı Tag ile ilişkilendir
+       }
+       else
+       {
+           pbOyuncuKartlar[i].Image = null; // Görseli temizle
+           pbOyuncuKartlar[i].Enabled = false; // Tıklanamaz yap
+           pbOyuncuKartlar[i].Tag = null; // İlişkiyi kaldır
+       }
+   }
 
-            // Seçilen kartları sıfırla
-            secilenKartlar.Clear();
+   // Seçilen kartları sıfırla
+   secilenKartlar.Clear();
 
-            // Seçim görsellerini sıfırla
-            foreach (var pb in pbOyuncuKartlar)
-            {
-                pb.BorderStyle = BorderStyle.None;
-            }
-        }
+   // Seçim görsellerini sıfırla
+   foreach (var pb in pbOyuncuKartlar)
+   {
+       pb.BorderStyle = BorderStyle.None;
+   }
+}
 
-        private void OyuncuKart_Click(object sender, EventArgs e)
-        {
-            // Tıklanan PictureBox'ı al
-            PictureBox pb = sender as PictureBox;
+private void OyuncuKart_Click(object sender, EventArgs e)
+{
+   // Tıklanan PictureBox'ı al
+   PictureBox pb = sender as PictureBox;
 
-            if (pb != null && pb.Tag is Kart kart)
-            {
-                if (secilenKartlar.Contains(kart))
-                {
-                    // Kart zaten seçiliyse, seçimi kaldır
-                    secilenKartlar.Remove(kart);
-                    pb.BorderStyle = BorderStyle.None;
-                }
-                else
-                {
-                    if (secilenKartlar.Count < 3)
-                    {
-                        // Yeni kartı seç
-                        secilenKartlar.Add(kart);
-                        pb.BorderStyle = BorderStyle.FixedSingle;
-                    }
-                    else
-                    {
-                        MessageBox.Show("En fazla 3 kart seçebilirsiniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-            }
-        }
+   if (pb != null && pb.Tag is Kart kart)
+   {
+       if (secilenKartlar.Contains(kart))
+       {
+           // Kart zaten seçiliyse, seçimi kaldır
+           secilenKartlar.Remove(kart);
+           pb.BorderStyle = BorderStyle.None;
+       }
+       else
+       {
+           if (secilenKartlar.Count < 3)
+           {
+               // Yeni kartı seç
+               secilenKartlar.Add(kart);
+               pb.BorderStyle = BorderStyle.FixedSingle;
+           }
+           else
+           {
+               MessageBox.Show("En fazla 3 kart seçebilirsiniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+           }
+       }
+   }
+}
 
-        private void btnSecHamle_Click(object sender, EventArgs e)
-        {
-            // Oyuncu kart seçimi kontrolü
-            if (secilenKartlar.Count != 3)
-            {
-                MessageBox.Show("Lütfen 3 kart seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+private void btnSecHamle_Click(object sender, EventArgs e)
+{
+   // Oyuncu kart seçimi kontrolü
+   if (secilenKartlar.Count != 3)
+   {
+       MessageBox.Show("Lütfen 3 kart seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+       return;
+   }
 
-            // Bilgisayar kart seçimi
-            List<Kart> bilgisayarKartlari = oyunYonetimi.Bilgisayar.KartSec();
+   // Bilgisayar kart seçimi
+   List<Kart> bilgisayarKartlari = oyunYonetimi.Bilgisayar.KartSec();
 
-            // Hamleyi gerçekleştir
-            oyunYonetimi.YeniHamle(secilenKartlar, bilgisayarKartlari);
+   // Hamleyi gerçekleştir
+   oyunYonetimi.YeniHamle(secilenKartlar, bilgisayarKartlari);
 
-            // UI'yı güncelle
-            GuncelleUI();
+   // UI'yı güncelle
+   GuncelleUI();
 
-            // Oyun bitti mi kontrol et
-            if (oyunYonetimi.OyunBitti)
-            {
-                // Skorları MessageBox ile göster
-                string sonucMesaji = $"Oyun Bitti!\n\n" +
-                                     $"Oyuncu Skor: {oyunYonetimi.Oyuncu.Skor}\n" +
-                                     $"Bilgisayar Skor: {oyunYonetimi.Bilgisayar.Skor}\n\n" +
-                                     $"Sonuç: {oyunYonetimi.OyunSonucu}";
+   // Oyun bitti mi kontrol et
+   if (oyunYonetimi.OyunBitti)
+   {
+       // Skorları MessageBox ile göster
+       string sonucMesaji = $"Oyun Bitti!\n\n" +
+                            $"Oyuncu Skor: {oyunYonetimi.Oyuncu.Skor}\n" +
+                            $"Bilgisayar Skor: {oyunYonetimi.Bilgisayar.Skor}\n\n" +
+                            $"Sonuç: {oyunYonetimi.OyunSonucu}";
 
-                MessageBox.Show(sonucMesaji, "Oyun Sonu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+       MessageBox.Show(sonucMesaji, "Oyun Sonu", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Oyun yeniden başlatılır
-                YeniOyun();
-            }
-        }
+       // Oyun yeniden başlatılır
+       YeniOyun();
+   }
+}
 
-        private void YeniOyun()
-        {
-            // Yeni bir oyun başlat
-            oyunYonetimi = new OyunYonetimi();
-            GuncelleUI();
-        }
+private void YeniOyun()
+{
+   // Yeni bir oyun başlat
+   oyunYonetimi = new OyunYonetimi();
+   GuncelleUI();
+}
 
-        private void btnYenidenBaslat_Click(object sender, EventArgs e)
-        {
-            // Kullanıcıdan onay al
-            var result = MessageBox.Show("Oyunu yeniden başlatmak istediğinize emin misiniz?", "Yeniden Başlat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+private void btnYenidenBaslat_Click(object sender, EventArgs e)
+{
+   // Kullanıcıdan onay al
+   var result = MessageBox.Show("Oyunu yeniden başlatmak istediğinize emin misiniz?", "Yeniden Başlat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
-            {
-                YeniOyun();
-            }
-        }
+   if (result == DialogResult.Yes)
+   {
+       YeniOyun();
+   }
+}
 
-        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
-        {
+private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+{
 
-        }
-        */
+}
+*/
     }
 }

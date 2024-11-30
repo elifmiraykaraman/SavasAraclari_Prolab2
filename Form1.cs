@@ -57,7 +57,18 @@ namespace SavasAraclari_Prolab2
                 pictureBoxKart1.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBoxKart1.Size = new Size(100, 150);
                 pictureBoxKart1.Tag = kart;
-                pictureBoxKart1.Click += PictureBox_Click;
+
+                // Yeni PictureBox (üstteki resim için)
+                PictureBox ustResim = new PictureBox();
+                ustResim.Image = Properties.Resources.gizli; // Üst resim
+                ustResim.SizeMode = PictureBoxSizeMode.StretchImage;
+                ustResim.Size = pictureBoxKart1.Size; // Üst resim ana kart boyutunda
+                ustResim.Location = new Point(0, 0); // Üst resmi tam olarak oturt
+                ustResim.BackColor = Color.Transparent;
+
+                // Üst resmi ana PictureBox'ın üzerine ekle
+                pictureBoxKart1.Controls.Add(ustResim);
+
 
                 flowLayoutPanelBilgisayarKartlar.Controls.Add(pictureBoxKart1);
             }
@@ -224,6 +235,17 @@ namespace SavasAraclari_Prolab2
                 pictureBoxKart1.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBoxKart1.Size = new Size(100, 150);
                 pictureBoxKart1.Tag = kart;
+
+                // Yeni PictureBox (üstteki resim için)
+                PictureBox ustResim = new PictureBox();
+                ustResim.Image = Properties.Resources.gizli; // Üst resim
+                ustResim.SizeMode = PictureBoxSizeMode.StretchImage;
+                ustResim.Size = pictureBoxKart1.Size; // Üst resim ana kart boyutunda
+                ustResim.Location = new Point(0, 0); // Üst resmi tam olarak oturt
+                ustResim.BackColor = Color.Transparent;
+
+                // Üst resmi ana PictureBox'ın üzerine ekle
+                pictureBoxKart1.Controls.Add(ustResim);
 
                 // Kart seçilebilir
                 pictureBoxKart1.Enabled = true;
@@ -429,6 +451,8 @@ namespace SavasAraclari_Prolab2
             
             
         }
+
+        
 
         
         /*

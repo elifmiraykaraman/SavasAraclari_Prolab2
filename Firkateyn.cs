@@ -13,6 +13,59 @@ namespace SavasAraclari_Prolab2
 {
     public class Firkateyn : DenizAraclari
     {
+        private static int sayac = 0;
+
+        public Firkateyn()
+            : base(150, 0, 10, "Deniz", 10)
+        {
+            sayac++;
+            this.KartAdi = "Fırkateyn" + sayac;
+        }
+
+        public static void SayacSifirla()
+        {
+            sayac = 0;
+        }
+
+        /*
+        private static int sayac = 0;
+        public static void SayacSifirla()
+        {
+            sayac = 0;
+        }
+        public override int Dayaniklilik
+        {
+            get { return dayaniklilik; }
+            set { dayaniklilik = value; }
+        }
+
+        public override int Vurus
+        {
+            get { return vurus; }
+            set { vurus = value; }
+        }
+
+        public override string Sinif
+        {
+            get { return sinif; }
+            set { sinif = value; }
+        }
+
+        public Firkateyn()
+            : base(150, 0, 10, "Deniz", 10)
+        {
+            sayac++;
+            this.KartAdi = "Firkateyn" + sayac; 
+        }
+
+        public override void DurumGuncelle(int hasar)
+        {
+            dayaniklilik -= hasar;
+            seviyePuani += 5;
+        }
+
+        */
+        /*
         public override string Sinif => "Deniz";
         public override string AltSinif => "Fırkateyn";
         public override int HavaVurusAvantaji => 5;
@@ -39,5 +92,8 @@ namespace SavasAraclari_Prolab2
             if (Dayaniklilik < 0)
                 Dayaniklilik = 0;
         }
+        
+        */
+
     }
 }

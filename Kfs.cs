@@ -10,6 +10,62 @@ namespace SavasAraclari_Prolab2
 {
     public class KFS : KaraAraclari
     {
+        private static int sayac = 0;
+
+        public KFS()
+            : base(130, 0, 20, "Kara", 10)
+        {
+            sayac++;
+            this.KartAdi = "KFS" + sayac;
+        }
+
+        public static void SayacSifirla()
+        {
+            sayac = 0;
+        }
+
+        /*
+        protected int havaVurusAvantaji;
+        private static int sayac = 0;
+
+        public static void SayacSifirla()
+        {
+            sayac = 0;
+        }
+        public override int Dayaniklilik
+        {
+            get { return dayaniklilik; }
+            set { dayaniklilik = value; }
+        }
+
+        public override int Vurus
+        {
+            get { return vurus; }
+            set { vurus = value; }
+        }
+
+        public override string Sinif
+        {
+            get { return sinif; }
+            set { sinif = value; }
+        }
+
+        public KFS()
+            : base(130, 0, 20, "Kara", 10)
+        {
+            this.havaVurusAvantaji = 15;
+            sayac++;
+            this.KartAdi = "KFS" + sayac;
+        }
+
+        public override void DurumGuncelle(int hasar)
+        {
+            dayaniklilik -= hasar;
+            seviyePuani += 10;
+        }
+
+        */
+        /*
         public override string Sinif => "Kara";
         public override string AltSinif => "KFS";
         public override int DenizVurusAvantaji => 0;
@@ -36,5 +92,6 @@ namespace SavasAraclari_Prolab2
             if (Dayaniklilik < 0)
                 Dayaniklilik = 0;
         }
+        */
     }
 }

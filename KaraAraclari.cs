@@ -9,6 +9,32 @@ namespace SavasAraclari_Prolab2
 {
     public abstract class KaraAraclari : SavasAraclari
     {
+        public KaraAraclari(int dayaniklilik, int seviyePuani, int vurus, string sinif, int maxSeviyePuani)
+        : base(dayaniklilik, seviyePuani, vurus, sinif, maxSeviyePuani)
+        {
+        }
+
+        public override void DurumGuncelle(int hasar)
+        {
+            Dayaniklilik -= hasar;
+            if (Dayaniklilik < 0)
+                Dayaniklilik = 0;
+
+            SeviyePuani += hasar / 10;
+            if (SeviyePuani > MaxSeviyePuani)
+                SeviyePuani = MaxSeviyePuani;
+        }
+        /*
+        protected int denizVurusAvantaji;
+
+        public KaraAraclari(int dayaniklilik, int seviyePuani, int vurus, string sinif, int denizVurusAvantaji)
+            : base(dayaniklilik, seviyePuani, vurus, sinif)
+        {
+            this.denizVurusAvantaji = denizVurusAvantaji;
+        }
+        */
+
+        /*
         public abstract string AltSinif { get; }
         public abstract int DenizVurusAvantaji { get; }
         public virtual int HavaVurusAvantaji { get; }
@@ -41,18 +67,17 @@ namespace SavasAraclari_Prolab2
 
             return avantaj;
         }
-}
 
-        /*
         public override void KartPuaniGoster()
         {
         }
 
         public override void DurumGuncelle(int hasar, int kazanilanPuan)
         {
-            Dayaniklilik -= hasar;
-            SeviyePuani += kazanilanPuan;
+       Dayaniklilik -= hasar;
+       SeviyePuani += kazanilanPuan;
         }
         */
     }
+}
 

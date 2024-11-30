@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BilgisayarOyuncu.cs" />
     <Compile Include="DenizAraclari1.cs" />
     <Compile Include="Firkateyn.cs" />
     <Compile Include="Form1.cs">
@@ -57,11 +56,8 @@
     </Compile>
     <Compile Include="HavaAraclari.cs" />
     <Compile Include="KaraAraclari.cs" />
-    <Compile Include="Kart.cs" />
     <Compile Include="Kfs.cs" />
-    <Compile Include="KullaniciOyuncu.cs" />
     <Compile Include="Obus.cs" />
-    <Compile Include="Oyuncu.cs" />
     <Compile Include="OyunYonetimi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,22 +92,34 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Ucak.png" />
+    <Content Include="Resources\Ucak.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Siha.png" />
+    <Content Include="Resources\Siha.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Sida.png" />
+    <Content Include="Resources\Sida.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Obus.png" />
+    <Content Include="Resources\Obus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\KFS.png" />
+    <Content Include="Resources\KFS.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Firkateyn.png" />
+    <Content Include="Resources\Firkateyn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ARKA_PLAN.png" />

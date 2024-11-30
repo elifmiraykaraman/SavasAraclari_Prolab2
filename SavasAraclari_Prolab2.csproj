@@ -94,6 +94,9 @@
   <ItemGroup>
     <None Include="Resources\gizli.bmp" />
     <None Include="Resources\gizli.png" />
+    <None Include="Resources\ARKA_PLAN_UST.png" />
+    <None Include="Resources\ARKA_PLAN_ALT.png" />
+    <None Include="Resources\ARKA_ALT_UST.png" />
     <Content Include="Resources\Ucak.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

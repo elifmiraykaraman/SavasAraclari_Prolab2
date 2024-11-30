@@ -118,17 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ARKA_PLAN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ARKA_PLAN1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="KFS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\KFS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Obus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Obus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gizli" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gizli.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Ucak" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ucak.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ARKA_PLAN_ALT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ARKA_PLAN_ALT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Firkateyn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Firkateyn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ARKA_PLAN_UST" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ARKA_PLAN_UST.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sida" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sida.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,10 +148,7 @@
   <data name="Siha" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Siha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ARKA_PLAN" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ARKA_PLAN1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="gizli" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gizli.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ARKA_ALT_UST" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ARKA_ALT_UST.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

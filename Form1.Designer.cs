@@ -45,6 +45,8 @@
             // 
             // flowLayoutPanelKartlar
             // 
+            this.flowLayoutPanelKartlar.BackgroundImage = global::SavasAraclari_Prolab2.Properties.Resources.ARKA_ALT_UST;
+            this.flowLayoutPanelKartlar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.flowLayoutPanelKartlar.Location = new System.Drawing.Point(-1, -1);
             this.flowLayoutPanelKartlar.Name = "flowLayoutPanelKartlar";
             this.flowLayoutPanelKartlar.Size = new System.Drawing.Size(801, 148);
@@ -52,6 +54,8 @@
             // 
             // flowLayoutPanelBilgisayarKartlar
             // 
+            this.flowLayoutPanelBilgisayarKartlar.BackgroundImage = global::SavasAraclari_Prolab2.Properties.Resources.ARKA_ALT_UST;
+            this.flowLayoutPanelBilgisayarKartlar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.flowLayoutPanelBilgisayarKartlar.Location = new System.Drawing.Point(-1, 494);
             this.flowLayoutPanelBilgisayarKartlar.Name = "flowLayoutPanelBilgisayarKartlar";
             this.flowLayoutPanelBilgisayarKartlar.Size = new System.Drawing.Size(801, 156);
@@ -63,7 +67,7 @@
             this.textBox1.ForeColor = System.Drawing.SystemColors.Window;
             this.textBox1.Location = new System.Drawing.Point(625, 196);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(92, 20);
+            this.textBox1.Size = new System.Drawing.Size(92, 22);
             this.textBox1.TabIndex = 15;
             this.textBox1.Text = "Hamle Sayısı : ";
             // 
@@ -81,22 +85,7 @@
             this.Name = "Form1";
             this.Text = "Savaş Araçları Oyunu";
             this.TransparencyKey = System.Drawing.SystemColors.Control;
-
-          //  this.Load += new System.EventHandler(this.Form1_Load_1);
-          //  this.tableLayoutPanel1.ResumeLayout(false);
-          //  ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart6)).EndInit();
-          //  ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart5)).EndInit();
-          //  ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart4)).EndInit();
-        //    ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart3)).EndInit();
-          //  ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart2)).EndInit();
-         //   ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart1)).EndInit();
-         //   ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart1)).EndInit();
-         //   ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart2)).EndInit();
-         //   ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart3)).EndInit();
-          //  ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart4)).EndInit();
-           // ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart5)).EndInit();
-          //  ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart6)).EndInit();
-          //  this.ResumeLayout(false);
+            this.ResumeLayout(false);
             this.PerformLayout();
 
         }

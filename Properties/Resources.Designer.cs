@@ -63,9 +63,39 @@ namespace SavasAraclari_Prolab2.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap ARKA_ALT_UST {
+            get {
+                object obj = ResourceManager.GetObject("ARKA_ALT_UST", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap ARKA_PLAN {
             get {
                 object obj = ResourceManager.GetObject("ARKA_PLAN", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap ARKA_PLAN_ALT {
+            get {
+                object obj = ResourceManager.GetObject("ARKA_PLAN_ALT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap ARKA_PLAN_UST {
+            get {
+                object obj = ResourceManager.GetObject("ARKA_PLAN_UST", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

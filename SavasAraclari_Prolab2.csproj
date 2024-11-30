@@ -92,8 +92,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\gizli.bmp" />
-    <None Include="Resources\gizli.png" />
     <Content Include="Resources\Ucak.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

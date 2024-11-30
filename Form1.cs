@@ -57,18 +57,7 @@ namespace SavasAraclari_Prolab2
                 pictureBoxKart1.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBoxKart1.Size = new Size(100, 150);
                 pictureBoxKart1.Tag = kart;
-
-                // Yeni PictureBox (üstteki resim için)
-                PictureBox ustResim = new PictureBox();
-                ustResim.Image = Properties.Resources.gizli; // Üst resim
-                ustResim.SizeMode = PictureBoxSizeMode.StretchImage;
-                ustResim.Size = pictureBoxKart1.Size; // Üst resim ana kart boyutunda
-                ustResim.Location = new Point(0, 0); // Üst resmi tam olarak oturt
-                ustResim.BackColor = Color.Transparent;
-
-                // Üst resmi ana PictureBox'ın üzerine ekle
-                pictureBoxKart1.Controls.Add(ustResim);
-
+                pictureBoxKart1.Click += PictureBox_Click;
 
                 flowLayoutPanelBilgisayarKartlar.Controls.Add(pictureBoxKart1);
             }
@@ -236,17 +225,6 @@ namespace SavasAraclari_Prolab2
                 pictureBoxKart1.Size = new Size(100, 150);
                 pictureBoxKart1.Tag = kart;
 
-                // Yeni PictureBox (üstteki resim için)
-                PictureBox ustResim = new PictureBox();
-                ustResim.Image = Properties.Resources.gizli; // Üst resim
-                ustResim.SizeMode = PictureBoxSizeMode.StretchImage;
-                ustResim.Size = pictureBoxKart1.Size; // Üst resim ana kart boyutunda
-                ustResim.Location = new Point(0, 0); // Üst resmi tam olarak oturt
-                ustResim.BackColor = Color.Transparent;
-
-                // Üst resmi ana PictureBox'ın üzerine ekle
-                pictureBoxKart1.Controls.Add(ustResim);
-
                 // Kart seçilebilir
                 pictureBoxKart1.Enabled = true;
                 pictureBoxKart1.BackColor = Color.Transparent;
@@ -338,12 +316,12 @@ namespace SavasAraclari_Prolab2
             }
         }
 
-<<<<<<< HEAD
+
         private void Form1_Load_1(object sender, EventArgs e)
         {
 
         }
-=======
+
         private List<SavasAraclari> BilgisayarKartSec()
         {
             // Bilgisayarın seçilebilir kartları
@@ -451,8 +429,6 @@ namespace SavasAraclari_Prolab2
             
             
         }
-
-        
 
         
         /*
@@ -647,6 +623,5 @@ private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
 
 }
 */
->>>>>>> 515c33753593e6f6a4322d953f204e12f9b78eb5
     }
 }

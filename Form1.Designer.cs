@@ -81,24 +81,22 @@
             this.Name = "Form1";
             this.Text = "Savaş Araçları Oyunu";
             this.TransparencyKey = System.Drawing.SystemColors.Control;
-<<<<<<< HEAD
-            this.Load += new System.EventHandler(this.Form1_Load_1);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart6)).EndInit();
-=======
->>>>>>> 515c33753593e6f6a4322d953f204e12f9b78eb5
-            this.ResumeLayout(false);
+
+          //  this.Load += new System.EventHandler(this.Form1_Load_1);
+          //  this.tableLayoutPanel1.ResumeLayout(false);
+          //  ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart6)).EndInit();
+          //  ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart5)).EndInit();
+          //  ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart4)).EndInit();
+        //    ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart3)).EndInit();
+          //  ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart2)).EndInit();
+         //   ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart1)).EndInit();
+         //   ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart1)).EndInit();
+         //   ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart2)).EndInit();
+         //   ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart3)).EndInit();
+          //  ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart4)).EndInit();
+           // ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart5)).EndInit();
+          //  ((System.ComponentModel.ISupportInitialize)(this.pbOyuncuKart6)).EndInit();
+          //  this.ResumeLayout(false);
             this.PerformLayout();
 
         }

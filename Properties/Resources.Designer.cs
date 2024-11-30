@@ -10,9 +10,8 @@
 
 namespace SavasAraclari_Prolab2.Properties {
     using System;
-    using System.Drawing;
-
-
+    
+    
     /// <summary>
     ///   Yerelleştirilmiş dizeleri aramak gibi işlemler için, türü kesin olarak belirtilmiş kaynak sınıfı.
     /// </summary>
@@ -32,9 +31,7 @@ namespace SavasAraclari_Prolab2.Properties {
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-
         
-
         /// <summary>
         ///   Bu sınıf tarafından kullanılan, önbelleğe alınmış ResourceManager örneğini döndürür.
         /// </summary>
@@ -86,6 +83,16 @@ namespace SavasAraclari_Prolab2.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap gizli {
+            get {
+                object obj = ResourceManager.GetObject("gizli", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap KFS {
             get {
                 object obj = ResourceManager.GetObject("KFS", resourceCulture);
@@ -102,9 +109,7 @@ namespace SavasAraclari_Prolab2.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
-       
-
+        
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
@@ -124,8 +129,7 @@ namespace SavasAraclari_Prolab2.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
-
+        
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
@@ -135,9 +139,5 @@ namespace SavasAraclari_Prolab2.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        /// <summary>
-        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
-        /// </summary>
-        
     }
 }

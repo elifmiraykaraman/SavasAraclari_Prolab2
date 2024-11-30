@@ -220,6 +220,7 @@
             this.Name = "Form1";
             this.Text = "Savaş Araçları Oyunu";
             this.TransparencyKey = System.Drawing.SystemColors.Control;
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBilgisayarKart5)).EndInit();

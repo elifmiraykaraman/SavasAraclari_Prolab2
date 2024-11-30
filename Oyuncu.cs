@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SavasAraclari_Prolab2
 {
@@ -44,10 +45,17 @@ namespace SavasAraclari_Prolab2
         // Skor gösterme fonksiyonu
         public void SkorGoster()
         {
-            System.Windows.Forms.MessageBox.Show($"{OyuncuAdi} Skoru: {Skor}");
+            MessageBox.Show($"{OyuncuAdi} Skoru: {Skor}");
         }
 
         // Kart seçme fonksiyonu (Soyut, her oyuncu için farklı uygulanacak)
-        public abstract List<SavasAraclari> KartSec();
+        public List<SavasAraclari> KartSec()
+        {
+            // Kart listesinden rastgele 3 kart seç
+            return KartListesi
+                .OrderBy(x => Guid.NewGuid()) // Rastgele sıralama
+                .Take(3)                      // İlk 3 kartı al
+                .ToList();
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace SavasAraclari_Prolab2
         public override void DurumGuncelle(SavasAraclari kart1, SavasAraclari kart2, int hasar)
         {
             kart1.Dayaniklilik -= hasar;
+            Console.WriteLine(kart1.KartAdi + " " + kart2.KartAdi + " ye" + hasar + "hasar verdi");
             if (kart1.Dayaniklilik <= 0)
             {
                 kart1.Dayaniklilik = 0;

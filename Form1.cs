@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -23,7 +24,10 @@ namespace SavasAraclari_Prolab2
         public int oyuncuPuan = 0 ;
         public int bilgisayarPuan = 0 ;
         public int hamleSayisi = 0;
-        public int istenenHamleSayisi = 0; 
+        public int istenenHamleSayisi = 0;
+
+        
+        
         public Form1()
         {
             InitializeComponent();
@@ -39,6 +43,7 @@ namespace SavasAraclari_Prolab2
             // "Yeni Hamle" butonunun tıklama olayını ekleyin
             btnYeniHamle.Click += btnYeniHamle_Click;
 
+            Console.WriteLine("------------Oyuna Hoşgeldiniz------------");
             
         }
         private void button1_Click(object sender, EventArgs e)
@@ -143,7 +148,7 @@ namespace SavasAraclari_Prolab2
 
             
 
-            while (secilebilirKartlar.Count < 1 || bilgisayarSecilebilirKartlar.Count < 1) {
+            while(secilebilirKartlar.Count < 1 || bilgisayarSecilebilirKartlar.Count < 1) {
                 
                 // 1. Seçilen kartları işle
                 HamleYap();
@@ -448,7 +453,7 @@ namespace SavasAraclari_Prolab2
                 oyuncuHasar = SinifAvantajiHesapla(oyuncuKart, bilgisayarKart, oyuncuHasar);
                 bilgisayarHasar = SinifAvantajiHesapla(bilgisayarKart, oyuncuKart, bilgisayarHasar);
 
-                
+                Console.WriteLine("\n----------"+(hamleSayisi+1)+ ".Hamle----------\n");
                 oyuncuKart.DurumGuncelle(oyuncuKart,bilgisayarKart,bilgisayarHasar);
                 bilgisayarKart.DurumGuncelle(bilgisayarKart, oyuncuKart, oyuncuHasar);
 
@@ -457,6 +462,7 @@ namespace SavasAraclari_Prolab2
                 {
                     bilgisayarPuan = bilgisayarPuan + 10;
                     eldekiKartlar.Remove(oyuncuKart);
+                    Console.WriteLine("Oyuncu elindeki "+oyuncuKart.KartAdi+" nı kaybetti");
                     flowLayoutPanelKartlar.Controls.RemoveByKey(oyuncuKart.KartAdi);
                     
                 }
@@ -465,6 +471,7 @@ namespace SavasAraclari_Prolab2
                 {
                     oyuncuPuan = oyuncuPuan + 10;
                     bilgisayarKartlari.Remove(bilgisayarKart);
+                    Console.WriteLine("Oyuncu elindeki " + bilgisayarKart.KartAdi + " nı kaybetti");
                     flowLayoutPanelBilgisayarKartlar.Controls.RemoveByKey(bilgisayarKart.KartAdi);
                      
                 }
@@ -594,11 +601,13 @@ namespace SavasAraclari_Prolab2
 
             if (oyuncu_toplam_dayaniklilik > bilgisayar_toplam_dayaniklilik)
             {
+                Console.WriteLine("\n\n------Tebrikler Kazandınız------\n\n");
                 MessageBox.Show("Tebrikler Kazandınız!!!");
             }
             if(bilgisayar_toplam_dayaniklilik > oyuncu_toplam_dayaniklilik)
             {
-                MessageBox.Show("Malesef kaybettiniz.Bilgisayar Kazandı!!!");
+                Console.WriteLine("\n\n------Maalesef kaybettiniz.Bilgisayar Kazandı------");
+                MessageBox.Show("Maalesef kaybettiniz.Bilgisayar Kazandı!!!");
             }
 
         }

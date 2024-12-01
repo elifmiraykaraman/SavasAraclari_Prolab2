@@ -9,20 +9,19 @@ namespace SavasAraclari_Prolab2
 {
     public abstract class KaraAraclari : SavasAraclari
     {
-        public KaraAraclari(int dayaniklilik, int seviyePuani, int vurus, string sinif, int maxSeviyePuani)
-        : base(dayaniklilik, seviyePuani, vurus, sinif, maxSeviyePuani)
+        public KaraAraclari(int dayaniklilik, int seviyePuani, int vurus, string sinif )
+        : base(dayaniklilik, seviyePuani, vurus, sinif)
         {
         }
 
-        public override void DurumGuncelle(int hasar)
+        public override void DurumGuncelle(SavasAraclari kart1, SavasAraclari kart2, int hasar)
         {
-            Dayaniklilik -= hasar;
-            if (Dayaniklilik < 0)
-                Dayaniklilik = 0;
-
-            SeviyePuani += hasar / 10;
-            if (SeviyePuani > MaxSeviyePuani)
-                SeviyePuani = MaxSeviyePuani;
+            kart1.Dayaniklilik -= hasar;
+            if (kart1.Dayaniklilik <= 0)
+            {
+                kart1.Dayaniklilik = 0;
+                kart2.SeviyePuani = seviyePuani + 10;
+            }
         }
         /*
         protected int denizVurusAvantaji;

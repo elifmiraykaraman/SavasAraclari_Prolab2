@@ -14,10 +14,10 @@ namespace SavasAraclari_Prolab2
         private static int sayac = 0;
 
         public Obus()
-            : base(120, 0, 15, "Kara", 10)
+            : base(120, 0, 15, "Kara")
         {
             sayac++;
-            this.KartAdi = "Obüs" + sayac;
+            this.KartAdi = "Obus" + sayac;
         }
 
         public static void SayacSifirla()

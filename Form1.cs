@@ -20,6 +20,9 @@ namespace SavasAraclari_Prolab2
 
         private Random rnd = new Random();
 
+        public int oyuncuPuan = 0 ;
+        public int bilgisayarPuan = 0 ;
+        public int hamleSayisi = 0; 
         public Form1()
         {
             InitializeComponent();
@@ -34,6 +37,8 @@ namespace SavasAraclari_Prolab2
 
             // "Yeni Hamle" butonunun tıklama olayını ekleyin
             btnYeniHamle.Click += btnYeniHamle_Click;
+
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -41,6 +46,14 @@ namespace SavasAraclari_Prolab2
             // Form arka planını ayarla
             this.BackgroundImage = Properties.Resources.ARKA_PLAN; // Arka plan görseli
             this.BackgroundImageLayout = ImageLayout.Stretch;
+            richTextBox1.SelectAll();
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
+            richTextBox1.Text = "\n" + "Oyuncu Puanı : " + oyuncuPuan.ToString();
+            richTextBox2.SelectAll();
+            richTextBox2.SelectionAlignment = HorizontalAlignment.Center;
+            richTextBox2.Text = "\n" + "Bilgisayar Puanı : " + bilgisayarPuan.ToString();
+            textBox1.Text = "Hamle Sayısı: 0";
+            label1.BackColor = Color.Transparent;
         }
 
         private void BilgisayarKartlariOlusturVeEkle()
@@ -103,6 +116,34 @@ namespace SavasAraclari_Prolab2
 
         private void btnYeniHamle_Click(object sender, EventArgs e)
         {
+
+            hamleSayisi++;
+
+            while (secilebilirKartlar.Count < 1 || bilgisayarSecilebilirKartlar.Count < 1) {
+                
+                // 1. Seçilen kartları işle
+                HamleYap();
+
+                // 2. Kullanılmış kartları kontrol et
+                KullanilmisKartlariKontrolEt();
+
+                // 3. Seçilebilir kartları güncelle ve ekranda göster
+                KartlariGuncelleVeGoster();
+
+                // 3.1 Bilgisayarın kartlarını güncelle ve ekranda göster
+                BilgisayarKartlariGuncelleVeGoster();
+
+                // 4. Yeni bir kart ver
+                YeniKartVer();
+
+                // 4.1 Bilgisayara yeni bir kart ver
+                BilgisayaraYeniKartVer();
+
+                // 5. Seçimleri ve arayüzü temizle
+                SecimleriTemizle();
+                
+            }
+
             // 1. Seçilen kartları işle
             HamleYap();
 
@@ -123,6 +164,18 @@ namespace SavasAraclari_Prolab2
 
             // 5. Seçimleri ve arayüzü temizle
             SecimleriTemizle();
+
+
+            richTextBox1.SelectAll();
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
+            richTextBox1.Text = "\n" + "Oyuncu Puanı : " + oyuncuPuan.ToString();
+            richTextBox2.SelectAll();
+            richTextBox2.SelectionAlignment = HorizontalAlignment.Center;
+            richTextBox2.Text = "\n" + "Bilgisayar Puanı : " + bilgisayarPuan.ToString();
+
+            textBox1.Text = "Hamle Sayısı: " + hamleSayisi.ToString();
+
+
         }
 
         private void HamleYap()
@@ -161,6 +214,31 @@ namespace SavasAraclari_Prolab2
 
             // Kartı bilgisayarın kartlarına ekle
             bilgisayarKartlari.Add(yeniKart);
+
+            // Kartları panale ekleyin
+            foreach (var kart in bilgisayarSecilebilirKartlar)
+            {
+                PictureBox pictureBoxKart1 = new PictureBox();
+                pictureBoxKart1.Image = ResimGetir(kart);
+                pictureBoxKart1.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBoxKart1.Size = new Size(100, 150);
+                pictureBoxKart1.Tag = kart;
+
+                // Yeni PictureBox (üstteki resim için)
+                PictureBox ustResim = new PictureBox();
+                ustResim.Image = Properties.Resources.gizli; // Üst resim
+                ustResim.SizeMode = PictureBoxSizeMode.StretchImage;
+                ustResim.Size = pictureBoxKart1.Size; // Üst resim ana kart boyutunda
+                ustResim.Location = new Point(0, 0); // Üst resmi tam olarak oturt
+                ustResim.BackColor = Color.Transparent;
+
+                // Üst resmi ana PictureBox'ın üzerine ekle
+                pictureBoxKart1.Controls.Add(ustResim);
+
+                
+
+                flowLayoutPanelBilgisayarKartlar.Controls.Add(pictureBoxKart1);
+            }
         }
 
         private void KullanilmisKartlariKontrolEt()
@@ -199,21 +277,6 @@ namespace SavasAraclari_Prolab2
                 pictureBoxKart.BackColor = Color.Transparent;
 
 
-                /*
-                if (kullanilmisKartlar.Contains(kart))
-                {
-                    // Kart kullanılmış
-                    pictureBoxKart.Enabled = false;
-                    pictureBoxKart.BackColor = Color.Gray;
-                }
-                else
-                {
-                    // Kart seçilebilir
-                    pictureBoxKart.Enabled = true;
-                    pictureBoxKart.BackColor = Color.Transparent;
-                }
-                */
-
                 flowLayoutPanelKartlar.Controls.Add(pictureBoxKart);
             }
             
@@ -250,20 +313,7 @@ namespace SavasAraclari_Prolab2
                 // Kart seçilebilir
                 pictureBoxKart1.Enabled = true;
                 pictureBoxKart1.BackColor = Color.Transparent;
-                /*
-                if (bilgisayarKullanilmisKartlar.Contains(kart))
-                {
-                    // Kart kullanılmış
-                    pictureBoxKart1.Enabled = false;
-                    pictureBoxKart1.BackColor = Color.Gray;
-                }
-                else
-                {
-                    // Kart seçilebilir
-                    pictureBoxKart1.Enabled = true;
-                    pictureBoxKart1.BackColor = Color.Transparent;
-                }
-                */
+                
                 flowLayoutPanelBilgisayarKartlar.Controls.Add(pictureBoxKart1);
             }
             
@@ -293,6 +343,7 @@ namespace SavasAraclari_Prolab2
         {
             // Seçilen kartları temizle
             secilenKartlar.Clear();
+            bilgisayarSecilenKartlar.Clear();
 
             // Tüm PictureBox'ların arka plan rengini sıfırlayın
             foreach (Control control in flowLayoutPanelKartlar.Controls)
@@ -339,11 +390,6 @@ namespace SavasAraclari_Prolab2
         }
 
 
-        private void Form1_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
         private List<SavasAraclari> BilgisayarKartSec()
         {
             // Bilgisayarın seçilebilir kartları
@@ -378,40 +424,75 @@ namespace SavasAraclari_Prolab2
                 bilgisayarHasar = SinifAvantajiHesapla(bilgisayarKart, oyuncuKart, bilgisayarHasar);
 
                 // Kartların durumunu güncelleyin
-                oyuncuKart.DurumGuncelle(bilgisayarHasar);
-                bilgisayarKart.DurumGuncelle(oyuncuHasar);
+                oyuncuKart.DurumGuncelle(oyuncuKart,bilgisayarKart,bilgisayarHasar);
+                bilgisayarKart.DurumGuncelle(bilgisayarKart, oyuncuKart, oyuncuHasar);
 
                 // Kartların dayanıklılığı 0 ise kartları elden çıkarın
                 if (oyuncuKart.Dayaniklilik <= 0)
                 {
+                    bilgisayarPuan = bilgisayarPuan + 10;
                     eldekiKartlar.Remove(oyuncuKart);
                     flowLayoutPanelKartlar.Controls.RemoveByKey(oyuncuKart.KartAdi);
+                    
                 }
 
                 if (bilgisayarKart.Dayaniklilik <= 0)
                 {
+                    oyuncuPuan = oyuncuPuan + 10;
                     bilgisayarKartlari.Remove(bilgisayarKart);
                     flowLayoutPanelBilgisayarKartlar.Controls.RemoveByKey(bilgisayarKart.KartAdi);
+                     
                 }
             }
         }
 
         private int SinifAvantajiHesapla(SavasAraclari saldiranKart, SavasAraclari savunanKart, int hasar)
         {
-            // Örnek sınıf avantajları
-            if (saldiranKart.Sinif == "Hava" && savunanKart.Sinif == "Kara")
-            {
-                hasar += saldiranKart.Vurus * 20 / 100;
+            if (saldiranKart.KartAdi.Contains("Obus") && savunanKart.Sinif == "Deniz") 
+            {   
+                hasar = hasar + 5;
+                return hasar;
             }
-            else if (saldiranKart.Sinif == "Kara" && savunanKart.Sinif == "Deniz")
+            if (saldiranKart.KartAdi.Contains("KFS") &&  savunanKart.Sinif == "Deniz")
             {
-                hasar += saldiranKart.Vurus * 20 / 100;
+                hasar = hasar + 10;
+                return hasar;
             }
-            else if (saldiranKart.Sinif == "Deniz" && savunanKart.Sinif == "Hava")
+            if (saldiranKart.KartAdi.Contains("KFS") && savunanKart.Sinif == "Hava")
             {
-                hasar += saldiranKart.Vurus * 20 / 100;
+                hasar = hasar + 20;
+                return hasar;
             }
-
+            if (saldiranKart.KartAdi.Contains("Ucak") && savunanKart.Sinif == "Kara")
+            {
+                hasar = hasar + 10;
+                return hasar;
+            }
+            if (saldiranKart.KartAdi.Contains("Siha") && savunanKart.Sinif == "Kara")
+            {
+                hasar = hasar + 10;
+                return hasar;
+            }
+            if (saldiranKart.KartAdi.Contains("Siha") && savunanKart.Sinif == "Deniz")
+            {
+                hasar = hasar + 10;
+                return hasar;
+            }
+            if (saldiranKart.KartAdi.Contains("Firkateyn") && savunanKart.Sinif == "Hava")
+            { 
+                hasar = hasar + 5;
+                return hasar;
+            }
+            if (saldiranKart.KartAdi.Contains("Sida") && savunanKart.Sinif == "Kara")
+            {
+                hasar = hasar + 10;
+                return hasar;
+            }
+            if (saldiranKart.KartAdi.Contains("Sida") && savunanKart.Sinif == "Hava")
+            {
+                hasar = hasar + 10;
+                return hasar;
+            }
             return hasar;
         }
 

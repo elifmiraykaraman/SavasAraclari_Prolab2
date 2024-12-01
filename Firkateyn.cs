@@ -16,10 +16,10 @@ namespace SavasAraclari_Prolab2
         private static int sayac = 0;
 
         public Firkateyn()
-            : base(150, 0, 10, "Deniz", 10)
+            : base(150, 0, 10, "Deniz")
         {
             sayac++;
-            this.KartAdi = "Fırkateyn" + sayac;
+            this.KartAdi = "Firkateyn" + sayac;
         }
 
         public static void SayacSifirla()

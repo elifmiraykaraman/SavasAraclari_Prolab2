@@ -15,7 +15,7 @@ namespace SavasAraclari_Prolab2
         protected int seviyePuani;
         protected int vurus;
         protected string sinif;
-        protected int maxSeviyePuani;
+        
 
         private string kartAdi;
         public string KartAdi
@@ -83,32 +83,20 @@ namespace SavasAraclari_Prolab2
             }
         }
 
-        public int MaxSeviyePuani
-        {
-            get { return maxSeviyePuani; }
-            set
-            {
-                if (maxSeviyePuani != value)
-                {
-                    maxSeviyePuani = value;
-                    OnPropertyChanged("MaxSeviyePuani");
-                }
-            }
-        }
+        
 
         public bool Kullanilmis { get; set; }
 
-        public SavasAraclari(int dayaniklilik, int seviyePuani, int vurus, string sinif, int maxSeviyePuani)
+        public SavasAraclari(int dayaniklilik, int seviyePuani, int vurus, string sinif)
         {
             this.Dayaniklilik = dayaniklilik;
             this.SeviyePuani = seviyePuani;
             this.Vurus = vurus;
             this.Sinif = sinif;
-            this.MaxSeviyePuani = maxSeviyePuani;
             this.Kullanilmis = false;
         }
 
-        public abstract void DurumGuncelle(int hasar);
+        public abstract void DurumGuncelle(SavasAraclari kart1, SavasAraclari kart2, int hasar);
 
         public void KartPuaniGoster()
         {

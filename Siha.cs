@@ -15,10 +15,10 @@ namespace SavasAraclari_Prolab2
         private static int sayac = 0;
 
         public Siha()
-            : base(90, 0, 25, "Hava", 10)
+            : base(90, 0, 25, "Hava")
         {
             sayac++;
-            this.KartAdi = "SİHA" + sayac;
+            this.KartAdi = "Siha" + sayac;
         }
 
         public static void SayacSifirla()

@@ -13,7 +13,7 @@ namespace SavasAraclari_Prolab2
         private static int sayac = 0;
 
         public KFS()
-            : base(130, 0, 20, "Kara", 10)
+            : base(130, 0, 20, "Kara")
         {
             sayac++;
             this.KartAdi = "KFS" + sayac;
